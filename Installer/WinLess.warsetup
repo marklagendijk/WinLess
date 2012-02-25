@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectRunAfterInstall="true" mainTargetApp="ID_bcbdd185_a875_4976_b079_d9cf83e2ad0e" nextUniqueId="1479" projectName="WinLess" projectUuid="aca1172c-5ac1-45cc-94f9-fb1f3f0eb2be" projectUpgradeUuid="b795642a-13ec-4b7c-bb13-d8f0311fc42d" projectVersion="1.3.0" projectOrganization="Mark Lagendijk" projectMustBeAdministratorToInstall="false" project64BitTarget="false" projectTargetDirectory="C:\projects\WinLess\installer" projectTargetName="WinLess-1.3.0" projectType="0" projectUserInterface="WixUI_Minimal">
+  <LicencePaths>
+    <string>C:\Program Files (x86)\Jgaa's Internet\War Setup\Licenses</string>
+  </LicencePaths>
+  <Virgin>false</Virgin>
+  <projectFeatures featureId="ID4B71809E576219FB04EFDAC6A25F9E27" featureName="WinLess" featureDescription="The complete package" configurableDirectory="APPLICATIONFOLDER" configurableDirectoryDefaultPath="[ProjectName]" enableInDefaultInstall="true" enableInMinimalInstall="true" excludeFromBuild="false">
+    <childFeatures featureId="PROGRAM" featureName="WinLess" featureDescription="WinLess" enableInDefaultInstall="true" enableInMinimalInstall="true" excludeFromBuild="false">
+      <components componentId="ID1003" componentGuid="7c4a8889-88bd-4c03-a37e-425202af09a9">
+        <componentFiles fileId="ID_bcbdd185_a875_4976_b079_d9cf83e2ad0e" srcName="winless.exe" srcDirectory="C:\projects\WinLess\WinLess\bin\Release" dstName="WinLess.exe" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="WinLess" shortcutInProgramFilesMenu="true" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
+          <service StartWhenInstalled="true" Remove="both" id="ID1002" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
+        </componentFiles>
+        <addToCreateFolder>false</addToCreateFolder>
+      </components>
+      <components componentId="ID1478" componentGuid="b4473920-8172-4abc-af55-c278b352c71b">
+        <componentFiles fileId="ID_97203dfe_1cfa_494b_af84_4f0d2740b2f4" srcName="NDesk.Options.dll" srcDirectory="..\WinLess\bin\Release" dstName="NDesk.Options.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="NDesk.Options" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
+          <service StartWhenInstalled="true" Remove="both" id="ID1477" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
+        </componentFiles>
+        <addToCreateFolder>false</addToCreateFolder>
+      </components>
+      <defaultInstallMode>3</defaultInstallMode>
+      <directories dirId="ID1356" srcPath="..\WinLess\bin\Release\Less" dstPath="Less" patterns=".*" excludePatterns="" recurse="false" preventEmptyDirectories="false" addToPath="false" ideHeaderFiles="false" ideExecutables="false" ideLibrary="false" ideMicrosoftVisualStudio2003="false" ideMicrosoftVisualStudio2005="false">
+        <pathComponent componentId="ID1355" componentGuid="ddc50de7-d493-47a5-b451-07d7ff8476b9">
+          <addToCreateFolder>false</addToCreateFolder>
+        </pathComponent>
+      </directories>
+    </childFeatures>
+    <defaultInstallMode>3</defaultInstallMode>
+  </projectFeatures>
+  <projectInstallForCurrentOrAllUsers>2</projectInstallForCurrentOrAllUsers>
+  <License>
+    <System>true</System>
+    <Name>Apache Software License 2.0</Name>
+  </License>
+  <projectProperties LicencePath="" TopBanner="" BigBanner="" ExclamationIcon="" InfoIcon="" NewIcon="" UpIcon="" VS2003Integration="VS2003_INTEGRATION" VS2005Integration="VS2005_INTEGRATION" UseRelativePaths="true" LaunchAppText="Launch WinLess" UseWixUI_ErrorProgressText="true" UseWixUI="true" CreateUninstallShortcut="true" Codepage="1252" ProductLanguage="1033" AlwaysMajorUpgrade="true" SupressValidation="false" Compress="true" BuildTarget="true" PublisherUrl="" SupportContact="" SupportUrl="" SupportPhone="" ReadMeFile="" UpdateUrl="" Comments="" Icon="" EmbedCab="true" MaxCabSize="0" CabCompressionLevel="mszip" InstallerVersion="300">
+    <UiCultures Name="en-US" Enabled="true" />
+    <UiCultures Name="de-de" Enabled="false" />
+    <UiCultures Name="es-es" Enabled="false" />
+    <UiCultures Name="nl-nl" Enabled="false" />
+  </projectProperties>
+</WarSetup-Project>
