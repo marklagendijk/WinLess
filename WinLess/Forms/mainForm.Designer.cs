@@ -210,7 +210,7 @@
             // directoryFilesSplitContainer.Panel2
             // 
             this.directoryFilesSplitContainer.Panel2.Controls.Add(this.filesDataGridView);
-            this.directoryFilesSplitContainer.Size = new System.Drawing.Size(803, 302);
+            this.directoryFilesSplitContainer.Size = new System.Drawing.Size(803, 304);
             this.directoryFilesSplitContainer.SplitterDistance = 217;
             this.directoryFilesSplitContainer.TabIndex = 8;
             // 
@@ -224,7 +224,7 @@
             this.foldersListBox.DataSource = this.directoryBindingSource;
             this.foldersListBox.ForeColor = System.Drawing.Color.Black;
             this.foldersListBox.FormattingEnabled = true;
-            this.foldersListBox.Location = new System.Drawing.Point(0, -1);
+            this.foldersListBox.Location = new System.Drawing.Point(0, 0);
             this.foldersListBox.Name = "foldersListBox";
             this.foldersListBox.Size = new System.Drawing.Size(216, 303);
             this.foldersListBox.TabIndex = 2;
@@ -263,12 +263,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.filesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.filesDataGridView.Location = new System.Drawing.Point(1, -1);
+            this.filesDataGridView.Location = new System.Drawing.Point(1, 1);
             this.filesDataGridView.MultiSelect = false;
             this.filesDataGridView.Name = "filesDataGridView";
             this.filesDataGridView.RowHeadersVisible = false;
             this.filesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.filesDataGridView.Size = new System.Drawing.Size(581, 302);
+            this.filesDataGridView.Size = new System.Drawing.Size(581, 303);
             this.filesDataGridView.TabIndex = 5;
             this.filesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellDoubleClick);
             this.filesDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellEndEdit);
