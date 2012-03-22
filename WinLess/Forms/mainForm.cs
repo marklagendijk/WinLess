@@ -35,6 +35,7 @@ namespace WinLess
                 activeOrInActiveMainForm = this;
                 
                 InitializeComponent();
+                initFilesDataGridViewCheckAllCheckBox();
                 foldersListBox.DataSource = Program.Settings.DirectoryList.Directories;
                 compileResultsDataGridView.DataSource = new List<Models.CompileResult>();
 
@@ -162,6 +163,32 @@ namespace WinLess
 
         #region Methods
 
+        private void initFilesDataGridViewCheckAllCheckBox()
+        {
+            // add checkbox header
+            Rectangle rect = filesDataGridView.GetCellDisplayRectangle(0, -1, true);
+            // set checkbox header to center of header cell. +1 pixel to position correctly.
+            rect.X = 10;
+            rect.Y = 4;
+
+            CheckBox checkAllFilesCheckbox = new CheckBox();
+            checkAllFilesCheckbox.Name = "checkboxHeader";
+            checkAllFilesCheckbox.Size = new Size(15, 15);
+            checkAllFilesCheckbox.Location = rect.Location;
+            checkAllFilesCheckbox.CheckedChanged += new EventHandler(checkAllFilesCheckbox_CheckedChanged);
+
+            filesDataGridView.Controls.Add(checkAllFilesCheckbox);
+        }
+
+        private void checkAllFilesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < filesDataGridView.RowCount; i++)
+            {
+                filesDataGridView[0, i].Value = ((CheckBox)filesDataGridView.Controls.Find("checkboxHeader", true)[0]).Checked;
+            }
+            filesDataGridView.EndEdit();
+        }
+        
         private void filesDataGridView_DataChanged()
         {
             List<Models.File> files = (List<Models.File>)filesDataGridView.DataSource;

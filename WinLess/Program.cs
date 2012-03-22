@@ -8,9 +8,6 @@ namespace WinLess
 {
     static class Program
     {
-        public const string WINLESS_VERSION = "1.3.0";
-        public const string LESS_JS_VERSION = "1.2.1";
-
         private static Settings settings;
         public static Settings Settings
         {
