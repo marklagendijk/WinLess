@@ -14,6 +14,7 @@ namespace WinLess.Models
             ShowHelp = false;
             Minify = false;
             InitialCompile = false;
+            ClearDirectories = false;
 
             if (HasArguments)
             {
@@ -21,19 +22,24 @@ namespace WinLess.Models
                 OptionSet optionSet = new OptionSet(){
                     {
                         "d|directory=",
-                        "The {DIRECTORY} you want WinLess to watch. Can be used multiple times.",
+                        "The {DIRECTORY} you want WinLess to watch. Can be used multiple times. Directories are added to the current directory list.",
                         v=> DirectoryPaths.Add(v)
                     },
                     {
-                        "m|minify",
+                        "minify",
                         "Add the 'minify' flag to have minification enabled.",
                         v=> Minify = v != null
                     },
                     {
-                        "c|compile",
+                        "compile",
                         "Add the 'compile' flag to do an initial compile of the LESS files.",
                         v=> InitialCompile = v != null
 
+                    },
+                    {
+                        "clear",
+                        "Add the 'clear' flag to clear the current directory list",
+                        v=> ClearDirectories = v != null
                     },
                     {
                         "h|help",
@@ -62,9 +68,9 @@ namespace WinLess.Models
 
                 if (ShowHelp)
                 {
-                    Console.WriteLine("\nWinless can be used with command line arguments. This can be useful if you create 'startup' scripts for your projects.\n\nWinLess accepts the following arguments:");
+                    Console.WriteLine("\nWinless can be used with command line arguments. This can be useful if you create 'startup' scripts for your projects.\nNote: WinLess is single instance. If WinLess is already running your arguments will be applied to the running instance.\n\nWinLess accepts the following arguments:");
                     optionSet.WriteOptionDescriptions(Console.Out);
-                    Console.WriteLine("\nExample usage:\nWinLess.exe -d \"C:\\projects\\project1\" -d \"C:\\projects\\project2\" --minify --compile");
+                    Console.WriteLine("\nExample usage:\nWinLess.exe -d \"C:\\projects\\project1\" -d \"C:\\projects\\project2\" --minify --compile --clear");
                     ConsoleExit = true;
                 }
             }
@@ -79,6 +85,7 @@ namespace WinLess.Models
         public List<string> DirectoryPaths { get; set; }
         public bool Minify { get; set; }
         public bool InitialCompile { get; set; }
+        public bool ClearDirectories { get; set; }
 
         #endregion
 

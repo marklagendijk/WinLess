@@ -496,6 +496,8 @@
             this.Name = "mainForm";
             this.Text = "WinLess - Windows GUI for less.js";
             this.Activated += new System.EventHandler(this.mainForm_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.mainForm_FormClosed);
+            this.Load += new System.EventHandler(this.mainForm_Load);
             this.Resize += new System.EventHandler(this.mainForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.directoryBindingSource)).EndInit();
             this.menu.ResumeLayout(false);

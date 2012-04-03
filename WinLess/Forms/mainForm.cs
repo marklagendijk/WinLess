@@ -16,43 +16,102 @@ namespace WinLess
     public partial class mainForm : Form
     {
         private static mainForm activeOrInActiveMainForm = null;
-        public static mainForm ActiveOrInActiveMainForm { 
-            get {
+        public static mainForm ActiveOrInActiveMainForm
+        {
+            get
+            {
                 return activeOrInActiveMainForm;
             }
         }
         
-
-        private bool finishedLoading;
-        private bool doInitialCompile;
-        
         private delegate void AddCompileResultDelegate(Models.CompileResult result);
-        
-        public mainForm(bool doInitialCompile)
+        private bool finishedLoading;
+
+        #region mainForm init and shutdown
+
+        public mainForm()
         {
             try
             {
+                finishedLoading = false;
                 activeOrInActiveMainForm = this;
-                
+
+                Program.Settings = Settings.LoadSettings();
+                Program.Settings.DirectoryList.Initialize();
+
                 InitializeComponent();
                 initFilesDataGridViewCheckAllCheckBox();
                 foldersListBox.DataSource = Program.Settings.DirectoryList.Directories;
                 compileResultsDataGridView.DataSource = new List<Models.CompileResult>();
-
-                this.finishedLoading = false;
-                this.doInitialCompile = doInitialCompile;
             }
             catch (Exception e)
             {
                 ExceptionHandler.LogException(e);
             }
         }
-   
+
+        public void LoadDirectories(CommandLineArguments args)
+        {
+            if (args.ClearDirectories)
+            {
+                Program.Settings.DirectoryList.ClearDirectories();
+            }
+            
+            //load directories specified in arguments
+            foreach (string directoryPath in args.DirectoryPaths)
+            {
+                if(System.IO.Directory.Exists(directoryPath))
+                {
+                    Models.Directory directory = Program.Settings.DirectoryList.AddDirectory(directoryPath);
+                    
+                    foreach (Models.File file in directory.Files)
+                    {
+                        file.Minify = args.Minify;
+                        if (args.InitialCompile)
+                        {
+                            file.Compile();
+                        }
+                    }
+                }
+            }
+            foldersListBox_DataChanged();
+            selectDirectory();
+            Program.Settings.SaveSettings();
+        }
+
+        private void mainForm_Activated(object sender, EventArgs e)
+        {
+            if (!this.finishedLoading)
+            {
+                this.finishedLoading = true;
+
+                if (Program.Settings.StartMinified)
+                {
+                    minimizeApp();
+                }
+            }
+        }
+
+        private void mainForm_Load(object sender, EventArgs e)
+        {
+            string[] args = Environment.GetCommandLineArgs();
+            CommandLineArguments commandLineArgs = new CommandLineArguments(args);
+            if (commandLineArgs.HasArguments)
+            {
+                LoadDirectories(commandLineArgs);
+            }
+        }
+
+        private void mainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.Settings.SaveSettings();
+        }
+
+        #endregion
+
         #region filesTabPage
 
         #region foldersListBox
-
-        #region Events
 
         private void foldersListBox_DragEnter(object sender, DragEventArgs e)
         {
@@ -101,10 +160,6 @@ namespace WinLess
             filesDataGridView_DataChanged();
         }
 
-        #endregion
-
-        #region Methods
-
         private void removeDirectory()
         {
             if (foldersListBox.SelectedItem != null)
@@ -135,11 +190,7 @@ namespace WinLess
 
         #endregion
 
-        #endregion
-
         #region filesDataGridView
-
-        #region Events
 
         private void filesDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -158,10 +209,6 @@ namespace WinLess
                 filesDataGridView.CurrentCell = filesDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
             }
         }
-
-        #endregion
-
-        #region Methods
 
         private void initFilesDataGridViewCheckAllCheckBox()
         {
@@ -218,10 +265,6 @@ namespace WinLess
             }
         }
 
-        #endregion
-
-        #region fileContextMenuStrip
-
         private void openFiletoolStripMenuItem_Click(object sender, EventArgs e)
         {
             filesDataGridView_OpenSelectedFile();
@@ -265,8 +308,6 @@ namespace WinLess
                 Program.Settings.SaveSettings();
             }
         }
-
-        #endregion
 
         #endregion
 
@@ -361,8 +402,6 @@ namespace WinLess
 
         #region notifyIcon
 
-        #region Events
-
         private void mainForm_Resize(object sender, EventArgs e)
         {
             if (FormWindowState.Minimized == this.WindowState)
@@ -389,10 +428,6 @@ namespace WinLess
             tabControl.SelectTab(compilerTabPage);
         }
 
-        #endregion
-
-        #region Methods
-
         private void minimizeApp()
         {
             this.WindowState = FormWindowState.Minimized;
@@ -416,10 +451,6 @@ namespace WinLess
             notifyIcon.ShowBalloonTip(500, title, message, ToolTipIcon.Error);
         }
 
-        #endregion
-
-        #region contextMenu
-
         private void notifyIconMenuOpen_Click(object sender, EventArgs e)
         {
             restoreApp();
@@ -432,11 +463,7 @@ namespace WinLess
 
         #endregion
 
-        #endregion
-
         #region menu
-
-        #region Events
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -448,26 +475,6 @@ namespace WinLess
         {
             aboutForm form = new aboutForm();
             form.ShowDialog(this);
-        }
-
-        #endregion
-
-        private void mainForm_Activated(object sender, EventArgs e)
-        {
-            if (!this.finishedLoading)
-            {
-                this.finishedLoading = true;
-
-                if (Program.Settings.StartMinified)
-                {
-                    minimizeApp();
-                }
-
-                if (this.doInitialCompile)
-                {
-                    Program.Settings.DirectoryList.Directories.ForEach(d => d.Files.ForEach(f => f.Compile(false)));
-                }         
-            }
         }
 
         #endregion 

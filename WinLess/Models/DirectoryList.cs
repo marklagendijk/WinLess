@@ -28,11 +28,15 @@ namespace WinLess.Models
 
         public Directory AddDirectory(string path)
         {
-            Models.Directory directory = new Models.Directory(path);
-            Directories.Add(directory);
-            AddWatcher(directory);
-            Program.Settings.SaveSettings();
-            CheckAllFilesForImports();
+            Directory directory = GetDirectory(path);
+            if (directory == null)
+            {
+                directory = new Models.Directory(path);
+                Directories.Add(directory);
+                AddWatcher(directory);
+                Program.Settings.SaveSettings();
+                CheckAllFilesForImports();
+            }
 
             return directory;
         }

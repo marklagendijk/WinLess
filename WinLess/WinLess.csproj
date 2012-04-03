@@ -38,9 +38,7 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ManyConsole">
-      <HintPath>..\packages\ManyConsole.0.4.2.0\lib\ManyConsole.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="NDesk.Options">
       <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
     </Reference>
@@ -81,6 +79,7 @@
       <DependentUpon>settingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AutoStartUtil.cs" />
+    <Compile Include="SingleInstanceController.cs" />
     <EmbeddedResource Include="Forms\aboutForm.resx">
       <DependentUpon>aboutForm.cs</DependentUpon>
     </EmbeddedResource>
