@@ -48,26 +48,30 @@ namespace WinLess.Models
                     }
                 };
 
-                //Make sure we have a Console
-                if (!AttachConsole(-1))
-                {
-                    AllocConsole();
-                }
-
                 try
                 {
                     optionSet.Parse(args);
                 }
                 catch (OptionException e)
                 {
+                    //Make sure we have a Console
+                    if (!AttachConsole(-1))
+                    {
+                        AllocConsole();
+                    }
                     Console.WriteLine("\nAn exception occured when try to parse the command line arguments.");
                     Console.WriteLine(e.Message);
-                    Console.WriteLine("Try `WinLess.exe -help' for more information.");
+                    Console.WriteLine("Try `WinLess.exe --help' for more information.");
                     ConsoleExit = true;
                 }
 
                 if (ShowHelp)
                 {
+                    //Make sure we have a Console
+                    if (!AttachConsole(-1))
+                    {
+                        AllocConsole();
+                    }
                     Console.WriteLine("\nWinless can be used with command line arguments. This can be useful if you create 'startup' scripts for your projects.\nNote: WinLess is single instance. If WinLess is already running your arguments will be applied to the running instance.\n\nWinLess accepts the following arguments:");
                     optionSet.WriteOptionDescriptions(Console.Out);
                     Console.WriteLine("\nExample usage:\nWinLess.exe -d \"C:\\projects\\project1\" -d \"C:\\projects\\project2\" --minify --compile --clear");
