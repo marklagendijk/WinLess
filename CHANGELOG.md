@@ -1,4 +1,4 @@
-## Changelog
+﻿## Changelog
 
 ### 1.5.2
 -Adjusted the SingleInstance logic so that WinLess will restore from the tray if you already have it running. This only happens when you don't call it from the command line (with arguments).
