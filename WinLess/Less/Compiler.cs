@@ -15,7 +15,7 @@ namespace WinLess.Less
             try
             {
                 CompileResult compileResult = ExecuteCompileCommand(lessPath, cssPath, minify);
-                mainForm.ActiveOrInActiveMainForm.addCompileResult(compileResult);
+                mainForm.ActiveOrInActiveMainForm.AddCompileResult(compileResult);
             }
             catch (Exception e)
             {

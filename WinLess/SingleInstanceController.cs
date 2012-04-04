@@ -21,10 +21,17 @@ namespace WinLess
             eventArgs.CommandLine.CopyTo(args, 0);
 
             CommandLineArguments commandLineArguments = new CommandLineArguments(args);
-            if (commandLineArguments.HasArguments)
+            if (!commandLineArguments.ConsoleExit)
             {
                 mainForm form = (mainForm)this.MainForm;
-                form.LoadDirectories(commandLineArguments);
+                if (commandLineArguments.HasArguments)
+                {
+                    form.LoadDirectories(commandLineArguments);
+                }
+                else
+                {
+                    form.RestoreFromTray();
+                }
             }
         }
 

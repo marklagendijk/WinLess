@@ -75,7 +75,7 @@ namespace WinLess
                 }
             }
             foldersListBox_DataChanged();
-            selectDirectory();
+            SelectDirectory();
             Program.Settings.SaveSettings();
         }
 
@@ -87,7 +87,7 @@ namespace WinLess
 
                 if (Program.Settings.StartMinified)
                 {
-                    minimizeApp();
+                    MinimizeToTray();
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace WinLess
                 {
                     Program.Settings.DirectoryList.AddDirectory(directoryInfo.FullName);
                     foldersListBox_DataChanged();
-                    selectDirectory();
+                    SelectDirectory();
                     Program.Settings.SaveSettings();
                 }
             }
@@ -145,13 +145,13 @@ namespace WinLess
         {
             if (e.KeyCode == Keys.Delete)
             {
-                removeDirectory();
+                RemoveDirectory();
             }
         }
 
         private void foldersListBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            selectDirectory();
+            SelectDirectory();
         }
 
         private void foldersListBox_DataChanged()
@@ -160,7 +160,7 @@ namespace WinLess
             filesDataGridView_DataChanged();
         }
 
-        private void removeDirectory()
+        private void RemoveDirectory()
         {
             if (foldersListBox.SelectedItem != null)
             {
@@ -173,7 +173,7 @@ namespace WinLess
         }
 
 
-        private void selectDirectory()
+        private void SelectDirectory()
         {
             Models.Directory directory = (Models.Directory)foldersListBox.SelectedItem;
             if (directory != null)
@@ -325,7 +325,7 @@ namespace WinLess
 
         private void removeDirectoryButton_Click(object sender, EventArgs e)
         {
-            removeDirectory();
+            RemoveDirectory();
         }
 
         private void refreshDirectoryButton_Click(object sender, EventArgs e)
@@ -334,7 +334,7 @@ namespace WinLess
             {
                 Models.Directory directory = (Models.Directory)foldersListBox.SelectedItem;
                 directory.Refresh();
-                selectDirectory();
+                SelectDirectory();
                 Program.Settings.SaveSettings();
             }
         }
@@ -359,11 +359,11 @@ namespace WinLess
 
         #region compileResultsDataGridView
         
-        public void addCompileResult(Models.CompileResult result)
+        public void AddCompileResult(Models.CompileResult result)
         {
             if (InvokeRequired)
             {
-                this.Invoke(new AddCompileResultDelegate(addCompileResult), new object[] { result });
+                this.Invoke(new AddCompileResultDelegate(AddCompileResult), new object[] { result });
                 return;
             }
 
@@ -373,11 +373,11 @@ namespace WinLess
 
             if (string.Compare(result.ResultText, "success", StringComparison.InvariantCultureIgnoreCase) != 0)
             {
-                showErrorNotification("Compile error", result.ResultText);
+                ShowErrorNotification("Compile error", result.ResultText);
             }
             else if (Program.Settings.ShowSuccessMessages)
             {
-                showSuccessNotification("Successful compile", result.FullPath);
+                ShowSuccessNotification("Successful compile", result.FullPath);
             }
         }
 
@@ -414,46 +414,46 @@ namespace WinLess
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
-                restoreApp();
+                RestoreFromTray();
             }
             else
             {
-                minimizeApp();
+                MinimizeToTray();
             }
         }
 
         private void notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
-            restoreApp();
+            RestoreFromTray();
             tabControl.SelectTab(compilerTabPage);
         }
 
-        private void minimizeApp()
+        private void MinimizeToTray()
         {
             this.WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = false;
             this.Hide();
         }
 
-        private void restoreApp()
+        public void RestoreFromTray()
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
             this.ShowInTaskbar = true;
         }
 
-        private void showSuccessNotification(string title, string message){
+        private void ShowSuccessNotification(string title, string message){
             notifyIcon.ShowBalloonTip(500, title, message, ToolTipIcon.Info);
         }
 
-        private void showErrorNotification(string title, string message)
+        private void ShowErrorNotification(string title, string message)
         {
             notifyIcon.ShowBalloonTip(500, title, message, ToolTipIcon.Error);
         }
 
         private void notifyIconMenuOpen_Click(object sender, EventArgs e)
         {
-            restoreApp();
+            RestoreFromTray();
         }
 
         private void notifyIconMenuExit_Click(object sender, EventArgs e)
