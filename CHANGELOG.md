@@ -8,6 +8,7 @@
 
 ### 1.5.0
 WinLess is now SingleInstance:
+
 - Calling WinLess via the command line adds the directories instead of always clearing the list.
 - You can optionally clear the current list with the '--clear'-flag.
 
