@@ -341,14 +341,12 @@ namespace WinLess
 
         private void compileSelectedButton_Click(object sender, EventArgs e)
         {
-            List<Models.File> files = (List<Models.File>)filesDataGridView.DataSource;
-            foreach (Models.File file in files)
-            {
-                if (file.Enabled)
-                {
-                    Compiler.CompileLessFile(file.FullPath, file.OutputPath, file.Minify);
-                }
-            }
+            CompileSelectedFiles();
+        }
+
+        private void compileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CompileSelectedFiles();
         }
 
         #endregion
@@ -478,5 +476,27 @@ namespace WinLess
         }
 
         #endregion 
+
+        #region Helper Methods
+
+        /// <summary>
+        /// Compiles a list of selected LESS files
+        /// </summary>
+        private void CompileSelectedFiles()
+        {
+            // Retrieve list of files from data grid
+            List<Models.File> files = (List<Models.File>)filesDataGridView.DataSource;
+
+            // Compile files one by one
+            foreach (Models.File file in files)
+            {
+                if (file.Enabled)
+                {
+                    Compiler.CompileLessFile(file.FullPath, file.OutputPath, file.Minify);
+                }
+            }
+        }
+
+        #endregion
     }
 }
