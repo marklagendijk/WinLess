@@ -57,7 +57,7 @@ namespace WinLess
         }
 
         public void SaveSettings(){
-            string dataDir = string.Format("{0}\\data", Application.CommonAppDataPath);
+            string dataDir = string.Format("{0}\\data", Application.UserAppDataPath);
             string settingsFilePath = string.Format("{0}\\settings.xml", dataDir);
             
             try {     
@@ -82,7 +82,7 @@ namespace WinLess
 
         public static Settings LoadSettings()
         {
-            string path = string.Format("{0}\\data\\settings.xml", Application.CommonAppDataPath);
+            string path = string.Format("{0}\\data\\settings.xml", Application.UserAppDataPath);
             if (System.IO.File.Exists(path))
             {
                 try
