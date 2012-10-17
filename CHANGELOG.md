@@ -1,4 +1,8 @@
 ## Changelog
+### 1.5.4
+- Added "Compile" as a tray icon context menu, by @DashK
+- Changed so WinLess doesn't save settings to ProgramData but to UserData instead, by @dunston
+- Updated less.js to v1.3.1, by @gpk-urmc
 
 ### 1.5.3
 - Fixed displaying of errors.
