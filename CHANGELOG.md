@@ -1,4 +1,9 @@
 ## Changelog
+
+### 1.6.0
+Node.js, Node Package Manager and lessc are now all compatible with Windows. [See here](https://github.com/cloudhead/less.js/wiki/Command-Line-use-of-LESS).
+- Rewrote WinLess to compile via Node.js with lessc
+
 ### 1.5.4
 - Added "Compile" as a tray icon context menu, by @DashK
 - Changed so WinLess doesn't save settings to ProgramData but to UserData instead, by @dunston
