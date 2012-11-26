@@ -20,7 +20,7 @@ namespace WinLess
             string[] args = new string[eventArgs.CommandLine.Count];
             eventArgs.CommandLine.CopyTo(args, 0);
 
-            CommandLineArguments commandLineArguments = new CommandLineArguments(args);
+            CommandArguments commandLineArguments = new CommandArguments(args);
             if (!commandLineArguments.ConsoleExit)
             {
                 mainForm form = (mainForm)this.MainForm;

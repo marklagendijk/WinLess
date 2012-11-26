@@ -15,7 +15,7 @@ namespace WinLess
         [STAThread]
         static void Main(string[] args)
         {
-            CommandLineArguments commandLineArguments = new CommandLineArguments(args);
+            CommandArguments commandLineArguments = new CommandArguments(args);
             if (!commandLineArguments.ConsoleExit)
             {
                 Application.EnableVisualStyles();

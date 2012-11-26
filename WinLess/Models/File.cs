@@ -5,7 +5,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using WinLess.Helpers;
-using WinLess.Less;
 
 namespace WinLess.Models
 {
@@ -115,7 +114,7 @@ namespace WinLess.Models
         {
             if (this.Enabled)
             {
-                Compiler.CompileLessFile(this.FullPath, this.OutputPath, this.Minify);
+                LessCompiler.CompileLessFile(this.FullPath, this.OutputPath, this.Minify);
             }
             if (compileParentFiles)
             {

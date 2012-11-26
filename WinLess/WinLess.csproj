@@ -56,10 +56,11 @@
     <Compile Include="Forms\aboutForm.Designer.cs">
       <DependentUpon>aboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Less\Compiler.cs" />
+    <Compile Include="LessCompiler.cs" />
     <Compile Include="Helpers\ExceptionHandler.cs" />
-    <Compile Include="Models\CommandLineArguments.cs" />
-    <Compile Include="Models\CompileResult.cs" />
+    <Compile Include="Models\CommandResult.cs" />
+    <Compile Include="Models\CommandArguments.cs" />
+    <Compile Include="Models\CompileCommandResult.cs" />
     <Compile Include="Models\Directory.cs" />
     <Compile Include="Forms\mainForm.cs">
       <SubType>Form</SubType>
@@ -80,6 +81,169 @@
     </Compile>
     <Compile Include="Helpers\AutoStartUtil.cs" />
     <Compile Include="SingleInstanceController.cs" />
+    <Content Include="node_modules\.bin\node.exe" />
+    <Content Include="node_modules\less\benchmark\benchmark.less" />
+    <Content Include="node_modules\less\benchmark\less-benchmark.js" />
+    <Content Include="node_modules\less\build\amd.js" />
+    <Content Include="node_modules\less\build\ecma-5.js" />
+    <Content Include="node_modules\less\build\header.js" />
+    <Content Include="node_modules\less\build\require-rhino.js" />
+    <Content Include="node_modules\less\build\require.js" />
+    <Content Include="node_modules\less\dist\less-1.1.0.js" />
+    <Content Include="node_modules\less\dist\less-1.1.0.min.js" />
+    <Content Include="node_modules\less\dist\less-1.1.1.js" />
+    <Content Include="node_modules\less\dist\less-1.1.1.min.js" />
+    <Content Include="node_modules\less\dist\less-1.1.2.js" />
+    <Content Include="node_modules\less\dist\less-1.1.2.min.js" />
+    <Content Include="node_modules\less\dist\less-1.1.3.js" />
+    <Content Include="node_modules\less\dist\less-1.1.3.min.js" />
+    <Content Include="node_modules\less\dist\less-1.1.4.js" />
+    <Content Include="node_modules\less\dist\less-1.1.4.min.js" />
+    <Content Include="node_modules\less\dist\less-1.1.5.js" />
+    <Content Include="node_modules\less\dist\less-1.1.5.min.js" />
+    <Content Include="node_modules\less\dist\less-1.1.6.js" />
+    <Content Include="node_modules\less\dist\less-1.1.6.min.js" />
+    <Content Include="node_modules\less\dist\less-1.2.0.js" />
+    <Content Include="node_modules\less\dist\less-1.2.0.min.js" />
+    <Content Include="node_modules\less\dist\less-1.2.1.js" />
+    <Content Include="node_modules\less\dist\less-1.2.1.min.js" />
+    <Content Include="node_modules\less\dist\less-1.2.2.js" />
+    <Content Include="node_modules\less\dist\less-1.2.2.min.js" />
+    <Content Include="node_modules\less\dist\less-1.3.0.js" />
+    <Content Include="node_modules\less\dist\less-1.3.0.min.js" />
+    <Content Include="node_modules\less\dist\less-1.3.1.js" />
+    <Content Include="node_modules\less\dist\less-1.3.1.min.js" />
+    <Content Include="node_modules\less\dist\less-rhino-1.1.3.js" />
+    <Content Include="node_modules\less\dist\less-rhino-1.1.5.js" />
+    <Content Include="node_modules\less\dist\less-rhino-1.3.1.js" />
+    <Content Include="node_modules\less\lib\less\browser.js" />
+    <Content Include="node_modules\less\lib\less\colors.js" />
+    <Content Include="node_modules\less\lib\less\cssmin.js" />
+    <Content Include="node_modules\less\lib\less\functions.js" />
+    <Content Include="node_modules\less\lib\less\index.js" />
+    <Content Include="node_modules\less\lib\less\lessc_helper.js" />
+    <Content Include="node_modules\less\lib\less\parser.js" />
+    <Content Include="node_modules\less\lib\less\rhino.js" />
+    <Content Include="node_modules\less\lib\less\tree.js" />
+    <Content Include="node_modules\less\lib\less\tree\alpha.js" />
+    <Content Include="node_modules\less\lib\less\tree\anonymous.js" />
+    <Content Include="node_modules\less\lib\less\tree\assignment.js" />
+    <Content Include="node_modules\less\lib\less\tree\call.js" />
+    <Content Include="node_modules\less\lib\less\tree\color.js" />
+    <Content Include="node_modules\less\lib\less\tree\comment.js" />
+    <Content Include="node_modules\less\lib\less\tree\condition.js" />
+    <Content Include="node_modules\less\lib\less\tree\dimension.js" />
+    <Content Include="node_modules\less\lib\less\tree\directive.js" />
+    <Content Include="node_modules\less\lib\less\tree\element.js" />
+    <Content Include="node_modules\less\lib\less\tree\expression.js" />
+    <Content Include="node_modules\less\lib\less\tree\import.js" />
+    <Content Include="node_modules\less\lib\less\tree\javascript.js" />
+    <Content Include="node_modules\less\lib\less\tree\keyword.js" />
+    <Content Include="node_modules\less\lib\less\tree\media.js" />
+    <Content Include="node_modules\less\lib\less\tree\mixin.js" />
+    <Content Include="node_modules\less\lib\less\tree\operation.js" />
+    <Content Include="node_modules\less\lib\less\tree\paren.js" />
+    <Content Include="node_modules\less\lib\less\tree\quoted.js" />
+    <Content Include="node_modules\less\lib\less\tree\ratio.js" />
+    <Content Include="node_modules\less\lib\less\tree\rule.js" />
+    <Content Include="node_modules\less\lib\less\tree\ruleset.js" />
+    <Content Include="node_modules\less\lib\less\tree\selector.js" />
+    <Content Include="node_modules\less\lib\less\tree\url.js" />
+    <Content Include="node_modules\less\lib\less\tree\value.js" />
+    <Content Include="node_modules\less\lib\less\tree\variable.js" />
+    <Content Include="node_modules\less\test\css\colors.css" />
+    <Content Include="node_modules\less\test\css\comments.css" />
+    <Content Include="node_modules\less\test\css\css-3.css" />
+    <Content Include="node_modules\less\test\css\css-escapes.css" />
+    <Content Include="node_modules\less\test\css\css.css" />
+    <Content Include="node_modules\less\test\css\debug\linenumbers-all.css" />
+    <Content Include="node_modules\less\test\css\debug\linenumbers-comments.css" />
+    <Content Include="node_modules\less\test\css\debug\linenumbers-mediaquery.css" />
+    <Content Include="node_modules\less\test\css\functions.css" />
+    <Content Include="node_modules\less\test\css\ie-filters.css" />
+    <Content Include="node_modules\less\test\css\import-once.css" />
+    <Content Include="node_modules\less\test\css\import.css" />
+    <Content Include="node_modules\less\test\css\javascript.css" />
+    <Content Include="node_modules\less\test\css\lazy-eval.css" />
+    <Content Include="node_modules\less\test\css\media.css" />
+    <Content Include="node_modules\less\test\css\mixins-args.css" />
+    <Content Include="node_modules\less\test\css\mixins-closure.css" />
+    <Content Include="node_modules\less\test\css\mixins-guards.css" />
+    <Content Include="node_modules\less\test\css\mixins-important.css" />
+    <Content Include="node_modules\less\test\css\mixins-named-args.css" />
+    <Content Include="node_modules\less\test\css\mixins-nested.css" />
+    <Content Include="node_modules\less\test\css\mixins-pattern.css" />
+    <Content Include="node_modules\less\test\css\mixins.css" />
+    <Content Include="node_modules\less\test\css\operations.css" />
+    <Content Include="node_modules\less\test\css\parens.css" />
+    <Content Include="node_modules\less\test\css\rulesets.css" />
+    <Content Include="node_modules\less\test\css\scope.css" />
+    <Content Include="node_modules\less\test\css\selectors.css" />
+    <Content Include="node_modules\less\test\css\strings.css" />
+    <Content Include="node_modules\less\test\css\variables.css" />
+    <Content Include="node_modules\less\test\css\whitespace.css" />
+    <Content Include="node_modules\less\test\less-test.js" />
+    <Content Include="node_modules\less\test\less\colors.less" />
+    <Content Include="node_modules\less\test\less\comments.less" />
+    <Content Include="node_modules\less\test\less\css-3.less" />
+    <Content Include="node_modules\less\test\less\css-escapes.less" />
+    <Content Include="node_modules\less\test\less\css.less" />
+    <Content Include="node_modules\less\test\less\debug\import\test.less" />
+    <Content Include="node_modules\less\test\less\debug\linenumbers.less" />
+    <Content Include="node_modules\less\test\less\errors\comment-in-selector.less" />
+    <Content Include="node_modules\less\test\less\errors\comment-in-selector.txt" />
+    <Content Include="node_modules\less\test\less\errors\import-missing.less" />
+    <Content Include="node_modules\less\test\less\errors\import-missing.txt" />
+    <Content Include="node_modules\less\test\less\errors\import-no-semi.less" />
+    <Content Include="node_modules\less\test\less\errors\import-no-semi.txt" />
+    <Content Include="node_modules\less\test\less\errors\import-subfolder1.less" />
+    <Content Include="node_modules\less\test\less\errors\import-subfolder1.txt" />
+    <Content Include="node_modules\less\test\less\errors\import-subfolder2.less" />
+    <Content Include="node_modules\less\test\less\errors\import-subfolder2.txt" />
+    <Content Include="node_modules\less\test\less\errors\imports\import-subfolder1.less" />
+    <Content Include="node_modules\less\test\less\errors\imports\import-subfolder2.less" />
+    <Content Include="node_modules\less\test\less\errors\imports\subfolder\mixin-not-defined.less" />
+    <Content Include="node_modules\less\test\less\errors\imports\subfolder\parse-error-curly-bracket.less" />
+    <Content Include="node_modules\less\test\less\errors\javascript-error.less" />
+    <Content Include="node_modules\less\test\less\errors\javascript-error.txt" />
+    <Content Include="node_modules\less\test\less\errors\mixin-not-defined.less" />
+    <Content Include="node_modules\less\test\less\errors\mixin-not-defined.txt" />
+    <Content Include="node_modules\less\test\less\errors\parse-error-curly-bracket.less" />
+    <Content Include="node_modules\less\test\less\errors\parse-error-curly-bracket.txt" />
+    <Content Include="node_modules\less\test\less\errors\parse-error-missing-bracket.less" />
+    <Content Include="node_modules\less\test\less\errors\parse-error-missing-bracket.txt" />
+    <Content Include="node_modules\less\test\less\errors\property-ie5-hack.less" />
+    <Content Include="node_modules\less\test\less\errors\property-ie5-hack.txt" />
+    <Content Include="node_modules\less\test\less\functions.less" />
+    <Content Include="node_modules\less\test\less\ie-filters.less" />
+    <Content Include="node_modules\less\test\less\import-once.less" />
+    <Content Include="node_modules\less\test\less\import.less" />
+    <Content Include="node_modules\less\test\less\import\deeper\import-once-test-a.less" />
+    <Content Include="node_modules\less\test\less\import\import-once-test-c.less" />
+    <Content Include="node_modules\less\test\less\import\import-test-a.less" />
+    <Content Include="node_modules\less\test\less\import\import-test-b.less" />
+    <Content Include="node_modules\less\test\less\import\import-test-c.less" />
+    <Content Include="node_modules\less\test\less\import\import-test-d.css" />
+    <Content Include="node_modules\less\test\less\import\import-test-e.less" />
+    <Content Include="node_modules\less\test\less\javascript.less" />
+    <Content Include="node_modules\less\test\less\lazy-eval.less" />
+    <Content Include="node_modules\less\test\less\media.less" />
+    <Content Include="node_modules\less\test\less\mixins-args.less" />
+    <Content Include="node_modules\less\test\less\mixins-closure.less" />
+    <Content Include="node_modules\less\test\less\mixins-guards.less" />
+    <Content Include="node_modules\less\test\less\mixins-important.less" />
+    <Content Include="node_modules\less\test\less\mixins-named-args.less" />
+    <Content Include="node_modules\less\test\less\mixins-nested.less" />
+    <Content Include="node_modules\less\test\less\mixins-pattern.less" />
+    <Content Include="node_modules\less\test\less\mixins.less" />
+    <Content Include="node_modules\less\test\less\operations.less" />
+    <Content Include="node_modules\less\test\less\parens.less" />
+    <Content Include="node_modules\less\test\less\rulesets.less" />
+    <Content Include="node_modules\less\test\less\scope.less" />
+    <Content Include="node_modules\less\test\less\selectors.less" />
+    <Content Include="node_modules\less\test\less\strings.less" />
+    <Content Include="node_modules\less\test\less\variables.less" />
+    <Content Include="node_modules\less\test\less\whitespace.less" />
     <EmbeddedResource Include="Forms\aboutForm.resx">
       <DependentUpon>aboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,48 +251,27 @@
       <DependentUpon>mainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Forms\settingsForm.resx">
       <DependentUpon>settingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="icon.ico" />
-    <Content Include="Less\lessc.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="app.config" />
+    <None Include="node_modules\.bin\lessc" />
+    <None Include="node_modules\.bin\lessc.cmd" />
+    <None Include="node_modules\less\.npmignore" />
+    <None Include="node_modules\less\bin\lessc" />
+    <None Include="node_modules\less\CHANGELOG.md" />
+    <None Include="node_modules\less\LICENSE" />
+    <None Include="node_modules\less\Makefile" />
+    <None Include="node_modules\less\package.json" />
+    <None Include="node_modules\less\README.md" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\WinLess.Models.CompileResult.datasource" />
-    <None Include="Properties\DataSources\WinLess.Models.Directory.datasource" />
-    <None Include="Properties\DataSources\WinLess.Models.File.datasource" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Less\less.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Less\lessc.wsf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>ROBOCOPY "$(ProjectDir)node_modules" "$(TargetDir)node_modules" * /COPYALL /S</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -450,7 +450,7 @@
             // 
             // compileResultBindingSource
             // 
-            this.compileResultBindingSource.DataSource = typeof(WinLess.Models.CompileResult);
+            this.compileResultBindingSource.DataSource = typeof(WinLess.Models.CompileCommandResult);
             // 
             // notifyIcon
             // 

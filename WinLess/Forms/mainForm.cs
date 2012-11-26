@@ -9,7 +9,6 @@ using System.IO;
 using System.Diagnostics;
 using WinLess.Models;
 using WinLess.Helpers;
-using WinLess.Less;
 
 namespace WinLess
 {
@@ -24,7 +23,7 @@ namespace WinLess
             }
         }
         
-        private delegate void AddCompileResultDelegate(Models.CompileResult result);
+        private delegate void AddCompileResultDelegate(Models.CompileCommandResult result);
         private bool finishedLoading;
 
         #region mainForm init and shutdown
@@ -42,7 +41,7 @@ namespace WinLess
                 InitializeComponent();
                 initFilesDataGridViewCheckAllCheckBox();
                 foldersListBox.DataSource = Program.Settings.DirectoryList.Directories;
-                compileResultsDataGridView.DataSource = new List<Models.CompileResult>();
+                compileResultsDataGridView.DataSource = new List<Models.CompileCommandResult>();
             }
             catch (Exception e)
             {
@@ -50,7 +49,7 @@ namespace WinLess
             }
         }
 
-        public void LoadDirectories(CommandLineArguments args)
+        public void LoadDirectories(CommandArguments args)
         {
             if (args.ClearDirectories)
             {
@@ -95,7 +94,7 @@ namespace WinLess
         private void mainForm_Load(object sender, EventArgs e)
         {
             string[] args = Environment.GetCommandLineArgs();
-            CommandLineArguments commandLineArgs = new CommandLineArguments(args);
+            CommandArguments commandLineArgs = new CommandArguments(args);
             if (commandLineArgs.HasArguments)
             {
                 LoadDirectories(commandLineArgs);
@@ -357,7 +356,7 @@ namespace WinLess
 
         #region compileResultsDataGridView
         
-        public void AddCompileResult(Models.CompileResult result)
+        public void AddCompileResult(Models.CompileCommandResult result)
         {
             if (InvokeRequired)
             {
@@ -365,17 +364,21 @@ namespace WinLess
                 return;
             }
 
-            List<Models.CompileResult> compileResults = (List<Models.CompileResult>)compileResultsDataGridView.DataSource;
+            if (result.IsSuccess){
+                result.ResultText = "success";
+            }
+
+            List<Models.CompileCommandResult> compileResults = (List<Models.CompileCommandResult>)compileResultsDataGridView.DataSource;
             compileResults.Insert(0, result);
             compileResultsDataGridView_DataChanged();
 
-            if (string.Compare(result.ResultText, "success", StringComparison.InvariantCultureIgnoreCase) != 0)
+            if (result.IsSuccess && Program.Settings.ShowSuccessMessages)
+            {
+                ShowSuccessNotification("Successful compile", result.ResultText);
+            }
+            else if(!result.IsSuccess)
             {
                 ShowErrorNotification("Compile error", result.ResultText);
-            }
-            else if (Program.Settings.ShowSuccessMessages)
-            {
-                ShowSuccessNotification("Successful compile", result.FullPath);
             }
         }
 
@@ -390,7 +393,7 @@ namespace WinLess
 
         private void clearCompileResultsButton_Click(object sender, EventArgs e)
         {
-            compileResultsDataGridView.DataSource = new List<Models.CompileResult>();
+            compileResultsDataGridView.DataSource = new List<Models.CompileCommandResult>();
             compileResultsDataGridView_DataChanged();
         }
         
@@ -492,7 +495,7 @@ namespace WinLess
             {
                 if (file.Enabled)
                 {
-                    Compiler.CompileLessFile(file.FullPath, file.OutputPath, file.Minify);
+                    LessCompiler.CompileLessFile(file.FullPath, file.OutputPath, file.Minify);
                 }
             }
         }
