@@ -19,6 +19,7 @@ namespace WinLess
             ShowSuccessMessages = false;
             StartWithWindows = true;
             StartMinified = false;
+	        UseAdvancedOutputFileSelector = false;
             ApplyStartWithWindows();
         }
 
@@ -27,6 +28,7 @@ namespace WinLess
         public bool CompileOnSave { get; set; }
         public bool ShowSuccessMessages { get; set; }
         public bool StartMinified { get; set; }
+		public bool UseAdvancedOutputFileSelector { get; set; }
 
         private bool startWithWindows;
         public bool StartWithWindows
