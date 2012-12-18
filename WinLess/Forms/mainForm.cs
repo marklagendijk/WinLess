@@ -299,13 +299,29 @@ namespace WinLess
             DataGridViewCell cell = filesDataGridView.SelectedCells[0];
             Models.File file = (Models.File)cell.OwningRow.DataBoundItem;
             FileInfo fileInfo = new FileInfo(file.OutputPath);
-            outputFolderBrowserDialog.SelectedPath = fileInfo.DirectoryName;
-            if (outputFolderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                file.OutputPath = string.Format("{0}\\{1}", outputFolderBrowserDialog.SelectedPath, fileInfo.Name);
-                filesDataGridView_DataChanged();
-                Program.Settings.SaveSettings();
-            }
+
+			if (!Program.Settings.UseAdvancedOutputFileSelector)
+			{
+				outputFolderBrowserDialog.SelectedPath = fileInfo.DirectoryName;
+				if (outputFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+				{
+					file.OutputPath = string.Format("{0}\\{1}", outputFolderBrowserDialog.SelectedPath, fileInfo.Name);
+					filesDataGridView_DataChanged();
+					Program.Settings.SaveSettings();
+				}
+			}
+			else
+			{
+				advancedOutputFolderBrowserDialog.InitialDirectory = fileInfo.DirectoryName;
+				advancedOutputFolderBrowserDialog.FileName = fileInfo.Name;
+				if (advancedOutputFolderBrowserDialog.ShowDialog() == DialogResult.OK)
+				{
+					file.OutputPath = advancedOutputFolderBrowserDialog.FileName;
+				}
+			}
+
+			filesDataGridView_DataChanged();
+			Program.Settings.SaveSettings();
         }
 
         #endregion
