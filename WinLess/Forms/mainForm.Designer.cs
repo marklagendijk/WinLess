@@ -71,6 +71,7 @@
             this.notifyIconMenuOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIconMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.outputFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+			this.advancedOutputFolderBrowserDialog = new System.Windows.Forms.OpenFileDialog();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.compileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.directoryBindingSource)).BeginInit();
@@ -558,6 +559,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileOpenFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFiletoolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog outputFolderBrowserDialog;
+		private System.Windows.Forms.OpenFileDialog advancedOutputFolderBrowserDialog;
         private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileDataGridViewTextBoxColumn;
