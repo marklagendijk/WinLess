@@ -23,7 +23,7 @@ namespace WinLess.Models
             this.ProjectDirectoryPath = directory.FullPath;
             this.Minify = Program.Settings.DefaultMinify;
             this.Enabled = true;
-            InitOutputPath();
+            this.OutputPath = GetInitialOutputPath();
             this.ParentFiles = new List<File>();
             CheckForImports();
         }
@@ -72,7 +72,7 @@ namespace WinLess.Models
             get
             {
                 Uri outputPathUri = new Uri(OutputPath);
-                Uri projectDirPathUri = new Uri(ProjectDirectoryPath + "\\");
+                Uri projectDirPathUri = new Uri(string.Format("{0}\\", ProjectDirectoryPath));
                 return Uri.UnescapeDataString(projectDirPathUri.MakeRelativeUri(outputPathUri).ToString()).Replace("/", "\\");
             }
         }
@@ -134,33 +134,41 @@ namespace WinLess.Models
 
         #region Private Methods
 
-        private void InitOutputPath()
+        private string GetInitialOutputPath()
+        {           
+            return string.Format("{0}{1}", GetInitialOuputDir(), GetInitialOuputFileName());
+        }
+
+        private string GetInitialOuputDir()
         {
             FileInfo fileInfo = new FileInfo(this.FullPath);
-            string directoryName = fileInfo.DirectoryName;
-            //if contains *\less\* -> replace *\less\* with *\css\*
-            if (directoryName.Contains("\\less\\") && System.IO.Directory.Exists(directoryName.Replace("\\less\\", "\\css\\")))
-            {
-                this.OutputPath = directoryName.Replace("\\less\\", "\\css\\");
-            }
-            //else if endWith less -> replace \less at end with \css
-            else if (directoryName.EndsWith("\\less") && System.IO.Directory.Exists(string.Format("{0}css", directoryName.Substring(0, directoryName.Length - 4))))
-            {
-                this.OutputPath = string.Format("{0}css", directoryName.Substring(0, directoryName.Length - 4));
-            }
-            //else same dir less file
-            else
-            {
-                this.OutputPath = directoryName;
-            }
+            string directoryName = string.Format("{0}\\", fileInfo.DirectoryName);
+                       
+            if (directoryName.Contains("\\less\\")){
+                if (System.IO.Directory.Exists(directoryName.Replace("\\less\\", "\\css\\"))){
+                    return directoryName.Replace("\\less\\", "\\css\\");
+                }
+                else if (System.IO.Directory.Exists(directoryName.Replace("\\less\\", "\\..\\css\\"))){
+                    return directoryName.Replace("\\less\\", "\\..\\css\\");
+                }
+                else if (System.IO.Directory.Exists(directoryName.Replace("\\less\\", "\\less\\css\\"))){
+                    return directoryName.Replace("\\less\\", "\\less\\css\\");
+                }
+            }       
+            
+            //no matches, use same dir as the less file is in
+            return directoryName;
+        }
 
-            //add filename
+        private string GetInitialOuputFileName()
+        {
+            FileInfo fileInfo = new FileInfo(this.FullPath);
             string fileName = fileInfo.Name.Replace(fileInfo.Extension, ".css");
             if (fileName.Contains(".less"))
             {
                 fileName = fileName.Replace(".less", "");
             }
-            this.OutputPath = string.Format("{0}\\{1}", OutputPath, fileName);
+            return fileName;
         }
 
         private List<string> GetLessImportPaths()

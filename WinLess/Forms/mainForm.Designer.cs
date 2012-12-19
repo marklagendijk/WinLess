@@ -353,7 +353,7 @@
             this.removeDirectoryButton.Name = "removeDirectoryButton";
             this.removeDirectoryButton.Size = new System.Drawing.Size(88, 23);
             this.removeDirectoryButton.TabIndex = 4;
-            this.removeDirectoryButton.Text = "Delete folder";
+            this.removeDirectoryButton.Text = "Remove folder";
             this.removeDirectoryButton.UseVisualStyleBackColor = true;
             this.removeDirectoryButton.Click += new System.EventHandler(this.removeDirectoryButton_Click);
             // 
