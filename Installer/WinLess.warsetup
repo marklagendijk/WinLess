@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectRunAfterInstall="true" mainTargetApp="ID_bcbdd185_a875_4976_b079_d9cf83e2ad0e" nextUniqueId="1502" projectName="WinLess" projectUuid="eb24e9df-ad8c-4522-977d-776c254f3ab2" projectUpgradeUuid="b795642a-13ec-4b7c-bb13-d8f0311fc42d" projectVersion="1.6.0" projectOrganization="Mark Lagendijk" projectMustBeAdministratorToInstall="false" project64BitTarget="false" projectTargetDirectory="C:\projects\WinLess\installer" projectTargetName="WinLess-1.6.0" projectType="0" projectUserInterface="WixUI_Minimal">
+<WarSetup-Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" projectRunAfterInstall="true" mainTargetApp="ID_bcbdd185_a875_4976_b079_d9cf83e2ad0e" nextUniqueId="1930" projectName="WinLess" projectUuid="bc5d325a-972b-4dcd-9331-a7c61e412594" projectUpgradeUuid="b795642a-13ec-4b7c-bb13-d8f0311fc42d" projectVersion="1.7.0" projectOrganization="Mark Lagendijk" projectMustBeAdministratorToInstall="false" project64BitTarget="false" projectTargetDirectory="C:\projects\WinLess\installer" projectTargetName="WinLess-1.7.0" projectType="0" projectUserInterface="WixUI_Minimal">
   <LicencePaths>
     <string>C:\Program Files (x86)\Jgaa's Internet\War Setup\Licenses</string>
   </LicencePaths>
@@ -15,6 +15,12 @@
       <components componentId="ID1478" componentGuid="b4473920-8172-4abc-af55-c278b352c71b">
         <componentFiles fileId="ID_97203dfe_1cfa_494b_af84_4f0d2740b2f4" srcName="NDesk.Options.dll" srcDirectory="..\WinLess\bin\Release" dstName="NDesk.Options.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="NDesk.Options" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
           <service StartWhenInstalled="true" Remove="both" id="ID1477" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
+        </componentFiles>
+        <addToCreateFolder>false</addToCreateFolder>
+      </components>
+      <components componentId="ID1503" componentGuid="2660c047-8f42-45f3-bbf1-dc59018986b8">
+        <componentFiles fileId="ID_6ad1d042_956b_45f3_86ec_8ee035a02bcf" srcName="Ookii.Dialogs.Wpf.dll" srcDirectory="..\WinLess\bin\Release" dstName="Ookii.Dialogs.Wpf.dll" dstPath="" isTrueTypeFont="false" isComModule="false" typelibGuid="" menuName="Ookii.Dialogs.Wpf" shortcutInProgramFilesMenu="false" shortcutOnDesktop="false" shortcutInQuickLaunch="false" shortcutInStartupFolder="false" shortcutWorkingDirectory="" shortcutCommandArguments="" shortcutDescription="">
+          <service StartWhenInstalled="true" Remove="both" id="ID1502" isService="false" userAccount="" userPassword="" cmdLineArguments="" errorControl="normal" interactive="false" loadOrderGroup="" serviceName="" startMode="auto" vital="true" />
         </componentFiles>
         <addToCreateFolder>false</addToCreateFolder>
       </components>
