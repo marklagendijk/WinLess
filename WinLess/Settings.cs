@@ -14,7 +14,7 @@ namespace WinLess
         public Settings()
         {
             DirectoryList = new DirectoryList();
-            DefaultMinify = true;
+            DefaultMinify = false;
             CompileOnSave = true;
             ShowSuccessMessages = false;
             StartWithWindows = true;
