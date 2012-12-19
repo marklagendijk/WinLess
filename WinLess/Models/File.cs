@@ -71,7 +71,9 @@ namespace WinLess.Models
         {
             get
             {
-                return OutputPath.Replace(ProjectDirectoryPath, "").Substring(1);
+                Uri outputPathUri = new Uri(OutputPath);
+                Uri projectDirPathUri = new Uri(ProjectDirectoryPath + "\\");
+                return Uri.UnescapeDataString(projectDirPathUri.MakeRelativeUri(outputPathUri).ToString()).Replace("/", "\\");
             }
         }
 

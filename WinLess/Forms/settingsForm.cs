@@ -23,7 +23,6 @@ namespace WinLess
             defaultMinifyCheckBox.Checked = Program.Settings.DefaultMinify;
             compileOnSaveCheckBox.Checked = Program.Settings.CompileOnSave;
             showSuccessMessagesCheckbox.Checked = Program.Settings.ShowSuccessMessages;
-			useAdvancedOutputFileSelector.Checked = Program.Settings.UseAdvancedOutputFileSelector;
         }
 
         private void saveSettings()
@@ -33,7 +32,6 @@ namespace WinLess
             Program.Settings.DefaultMinify = defaultMinifyCheckBox.Checked;
             Program.Settings.CompileOnSave = compileOnSaveCheckBox.Checked;
             Program.Settings.ShowSuccessMessages = showSuccessMessagesCheckbox.Checked;
-			Program.Settings.UseAdvancedOutputFileSelector = useAdvancedOutputFileSelector.Checked;
             Program.Settings.SaveSettings();
         }
 

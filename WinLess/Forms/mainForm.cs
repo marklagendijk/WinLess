@@ -9,6 +9,7 @@ using System.IO;
 using System.Diagnostics;
 using WinLess.Models;
 using WinLess.Helpers;
+using Ookii.Dialogs.Wpf;
 
 namespace WinLess
 {
@@ -25,6 +26,8 @@ namespace WinLess
         
         private delegate void AddCompileResultDelegate(Models.CompileCommandResult result);
         private bool finishedLoading;
+        private VistaFolderBrowserDialog folderBrowserDialog;
+        private VistaSaveFileDialog outputFileDialog;
 
         #region mainForm init and shutdown
 
@@ -42,6 +45,12 @@ namespace WinLess
                 initFilesDataGridViewCheckAllCheckBox();
                 foldersListBox.DataSource = Program.Settings.DirectoryList.Directories;
                 compileResultsDataGridView.DataSource = new List<Models.CompileCommandResult>();
+                folderBrowserDialog = new VistaFolderBrowserDialog();
+                outputFileDialog = new VistaSaveFileDialog()
+                {
+                    AddExtension = true,
+                    Filter = "*.css|*.css"
+                };
             }
             catch (Exception e)
             {
@@ -300,28 +309,14 @@ namespace WinLess
             Models.File file = (Models.File)cell.OwningRow.DataBoundItem;
             FileInfo fileInfo = new FileInfo(file.OutputPath);
 
-			if (!Program.Settings.UseAdvancedOutputFileSelector)
+			outputFileDialog.InitialDirectory = fileInfo.DirectoryName;
+			outputFileDialog.FileName = fileInfo.Name;
+			if (outputFileDialog.ShowDialog() == true)
 			{
-				outputFolderBrowserDialog.SelectedPath = fileInfo.DirectoryName;
-				if (outputFolderBrowserDialog.ShowDialog() == DialogResult.OK)
-				{
-					file.OutputPath = string.Format("{0}\\{1}", outputFolderBrowserDialog.SelectedPath, fileInfo.Name);
-					filesDataGridView_DataChanged();
-					Program.Settings.SaveSettings();
-				}
+				file.OutputPath = outputFileDialog.FileName;
+                filesDataGridView_DataChanged();
+                Program.Settings.SaveSettings();
 			}
-			else
-			{
-				advancedOutputFolderBrowserDialog.InitialDirectory = fileInfo.DirectoryName;
-				advancedOutputFolderBrowserDialog.FileName = fileInfo.Name;
-				if (advancedOutputFolderBrowserDialog.ShowDialog() == DialogResult.OK)
-				{
-					file.OutputPath = advancedOutputFolderBrowserDialog.FileName;
-				}
-			}
-
-			filesDataGridView_DataChanged();
-			Program.Settings.SaveSettings();
         }
 
         #endregion
@@ -330,7 +325,7 @@ namespace WinLess
 
         private void addDirectoryButton_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            if (folderBrowserDialog.ShowDialog() == true)
             {
                 Program.Settings.DirectoryList.AddDirectory(folderBrowserDialog.SelectedPath);
                 foldersListBox_DataChanged();

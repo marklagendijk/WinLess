@@ -35,7 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.directoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,11 +68,9 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIconContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.notifyIconMenuOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.notifyIconMenuExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.outputFolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-			this.advancedOutputFolderBrowserDialog = new System.Windows.Forms.OpenFileDialog();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.compileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIconMenuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.directoryBindingSource)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileBindingSource)).BeginInit();
@@ -111,13 +108,13 @@
             this.menuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem});
             this.menuItemFile.Name = "menuItemFile";
-            this.menuItemFile.Size = new System.Drawing.Size(35, 20);
+            this.menuItemFile.Size = new System.Drawing.Size(37, 20);
             this.menuItemFile.Text = "File";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -126,13 +123,13 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -147,34 +144,34 @@
             this.fileOpenFolderToolStripMenuItem,
             this.fileSelectOutputToolStripMenuItem});
             this.fileContextMenuStrip.Name = "fileContextMenuStrip";
-            this.fileContextMenuStrip.Size = new System.Drawing.Size(184, 70);
+            this.fileContextMenuStrip.Size = new System.Drawing.Size(198, 92);
             // 
             // openFiletoolStripMenuItem
             // 
             this.openFiletoolStripMenuItem.Name = "openFiletoolStripMenuItem";
-            this.openFiletoolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.openFiletoolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.openFiletoolStripMenuItem.Text = "Open file";
             this.openFiletoolStripMenuItem.Click += new System.EventHandler(this.openFiletoolStripMenuItem_Click);
             // 
             // fileOpenFolderToolStripMenuItem
             // 
             this.fileOpenFolderToolStripMenuItem.Name = "fileOpenFolderToolStripMenuItem";
-            this.fileOpenFolderToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.fileOpenFolderToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.fileOpenFolderToolStripMenuItem.Text = "Open containing folder";
             this.fileOpenFolderToolStripMenuItem.Click += new System.EventHandler(this.fileOpenFolderToolStripMenuItem_Click);
             // 
             // fileSelectOutputToolStripMenuItem
             // 
             this.fileSelectOutputToolStripMenuItem.Name = "fileSelectOutputToolStripMenuItem";
-            this.fileSelectOutputToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.fileSelectOutputToolStripMenuItem.Text = "Select output folder";
+            this.fileSelectOutputToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.fileSelectOutputToolStripMenuItem.Text = "Select output file";
             this.fileSelectOutputToolStripMenuItem.Click += new System.EventHandler(this.fileSelectOutputToolStripMenuItem_Click);
             // 
             // tabControl
             // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.filesTabPage);
             this.tabControl.Controls.Add(this.compilerTabPage);
             this.tabControl.Location = new System.Drawing.Point(12, 27);
@@ -200,9 +197,9 @@
             // 
             // directoryFilesSplitContainer
             // 
-            this.directoryFilesSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.directoryFilesSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.directoryFilesSplitContainer.Location = new System.Drawing.Point(7, 7);
             this.directoryFilesSplitContainer.Name = "directoryFilesSplitContainer";
             // 
@@ -220,9 +217,9 @@
             // foldersListBox
             // 
             this.foldersListBox.AllowDrop = true;
-            this.foldersListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.foldersListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.foldersListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
             this.foldersListBox.DataSource = this.directoryBindingSource;
             this.foldersListBox.ForeColor = System.Drawing.Color.Black;
@@ -245,9 +242,9 @@
             this.filesDataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(235)))), ((int)(((byte)(246)))));
             this.filesDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.filesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.filesDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.filesDataGridView.AutoGenerateColumns = false;
             this.filesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.filesDataGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
@@ -392,9 +389,9 @@
             this.compileResultsDataGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(235)))), ((int)(((byte)(246)))));
             this.compileResultsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.compileResultsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.compileResultsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.compileResultsDataGridView.AutoGenerateColumns = false;
             this.compileResultsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.compileResultsDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -469,39 +466,39 @@
             this.compileToolStripMenuItem,
             this.notifyIconMenuExit});
             this.notifyIconContextMenuStrip.Name = "notifyIconContextMenuStrip";
-            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(153, 92);
+            this.notifyIconContextMenuStrip.Size = new System.Drawing.Size(120, 70);
             // 
             // notifyIconMenuOpen
             // 
             this.notifyIconMenuOpen.Name = "notifyIconMenuOpen";
-            this.notifyIconMenuOpen.Size = new System.Drawing.Size(152, 22);
+            this.notifyIconMenuOpen.Size = new System.Drawing.Size(119, 22);
             this.notifyIconMenuOpen.Text = "Open";
             this.notifyIconMenuOpen.Click += new System.EventHandler(this.notifyIconMenuOpen_Click);
+            // 
+            // compileToolStripMenuItem
+            // 
+            this.compileToolStripMenuItem.Name = "compileToolStripMenuItem";
+            this.compileToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.compileToolStripMenuItem.Text = "Compile";
+            this.compileToolStripMenuItem.Click += new System.EventHandler(this.compileToolStripMenuItem_Click);
             // 
             // notifyIconMenuExit
             // 
             this.notifyIconMenuExit.Name = "notifyIconMenuExit";
-            this.notifyIconMenuExit.Size = new System.Drawing.Size(152, 22);
+            this.notifyIconMenuExit.Size = new System.Drawing.Size(119, 22);
             this.notifyIconMenuExit.Text = "Exit";
             this.notifyIconMenuExit.Click += new System.EventHandler(this.notifyIconMenuExit_Click);
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.logoPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
             this.logoPictureBox.Location = new System.Drawing.Point(0, 402);
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.Size = new System.Drawing.Size(849, 100);
             this.logoPictureBox.TabIndex = 9;
             this.logoPictureBox.TabStop = false;
-            // 
-            // compileToolStripMenuItem
-            // 
-            this.compileToolStripMenuItem.Name = "compileToolStripMenuItem";
-            this.compileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.compileToolStripMenuItem.Text = "Compile";
-            this.compileToolStripMenuItem.Click += new System.EventHandler(this.compileToolStripMenuItem_Click);
             // 
             // mainForm
             // 
@@ -542,7 +539,6 @@
 
         #endregion
 
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menuItemFile;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
@@ -558,8 +554,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileSelectOutputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileOpenFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFiletoolStripMenuItem;
-        private System.Windows.Forms.FolderBrowserDialog outputFolderBrowserDialog;
-		private System.Windows.Forms.OpenFileDialog advancedOutputFolderBrowserDialog;
         private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileDataGridViewTextBoxColumn;
