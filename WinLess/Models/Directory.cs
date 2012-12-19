@@ -97,22 +97,26 @@ namespace WinLess.Models
 
         private void AddFiles(DirectoryInfo directoryInfo)
         {
-            FileInfo[] files = directoryInfo.GetFiles();
-            foreach (FileInfo file in files)
+            try
             {
-                if ((string.Compare(file.Extension, ".less", StringComparison.InvariantCultureIgnoreCase) == 0 ||
-                    (string.Compare(file.Extension, ".css", StringComparison.InvariantCultureIgnoreCase) == 0) && file.Name.Contains(".less")
-                   ) && !this.ContainsFile(file.FullName))                   
+                FileInfo[] files = directoryInfo.GetFiles();
+                foreach (FileInfo file in files)
                 {
-                    Files.Add(new Models.File(this, file.FullName));
+                    if ((string.Compare(file.Extension, ".less", StringComparison.InvariantCultureIgnoreCase) == 0 ||
+                        (string.Compare(file.Extension, ".css", StringComparison.InvariantCultureIgnoreCase) == 0) && file.Name.Contains(".less")
+                       ) && !this.ContainsFile(file.FullName))
+                    {
+                        Files.Add(new Models.File(this, file.FullName));
+                    }
+                }
+
+                DirectoryInfo[] subDirectories = directoryInfo.GetDirectories();
+                foreach (DirectoryInfo subDirectoryInfo in subDirectories)
+                {
+                    AddFiles(subDirectoryInfo);
                 }
             }
-
-            DirectoryInfo[] subDirectories = directoryInfo.GetDirectories();
-            foreach (DirectoryInfo subDirectoryInfo in subDirectories)
-            {
-                AddFiles(subDirectoryInfo);
-            }
+            catch{}
         }
 
         #endregion
