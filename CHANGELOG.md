@@ -1,5 +1,11 @@
 ## Changelog
 
+### 1.7.0
+- Improved folder selection via 'Add folder' by using Ookii.VistaFolderBrowserDialog
+- Improved output path selection by changing 'select output folder' to 'select output file', @jmclocklin thanks for the help
+- Improved automatic output folder recognition.
+- Fixed some bugs
+
 ### 1.6.0
 Node.js, Node Package Manager and lessc are now all compatible with Windows. [See here](https://github.com/cloudhead/less.js/wiki/Command-Line-use-of-LESS).
 - Rewrote WinLess to compile via Node.js with lessc
