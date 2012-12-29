@@ -1,5 +1,9 @@
 ## Changelog
 
+### 1.7.1
+- Updated less.js to 1.3.2
+
+
 ### 1.7.0
 - Improved folder selection via 'Add folder' by using Ookii.VistaFolderBrowserDialog
 - Improved output path selection by changing 'select output folder' to 'select output file', @jmclocklin thanks for the help
