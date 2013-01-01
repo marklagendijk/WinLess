@@ -9,13 +9,13 @@ using System.Text.RegularExpressions;
 
 namespace WinLess
 {
-    static class LessCompiler
+    public static class LessCompiler
     {        
-        public static void CompileLessFile(string lessPath, string cssPath, bool minify)
+        public static void Compile(string lessFile, string cssFile, bool minify)
         {
             try
             {
-                CompileCommandResult compileResult = ExecuteCompileCommand(lessPath, cssPath, minify);
+                CompileCommandResult compileResult = ExecuteCompileCommand(lessFile, cssFile, minify);
                 mainForm.ActiveOrInActiveMainForm.AddCompileResult(compileResult);
             }
             catch (Exception e)
@@ -24,36 +24,71 @@ namespace WinLess
             }
         }
 
-        public static string GetVersion()
+        public static Version GetCurrentCompilerVersion()
         {
-            string fileName = string.Format("{0}\\node_modules\\.bin\\lessc.cmd", Application.StartupPath);
-            string arguments = " -v";
-            CommandResult result = ExecuteCommand(fileName, arguments);
-            string version = "";
-            if (result.IsSuccess){
+            CommandResult result = ExecuteLessCommand("-v");
+
+            return GetVersionFromCommandResult(result);
+        }
+
+        public static Version GetAvailableCompilerVersion()
+        {
+            CommandResult result = ExecuteNodePackageManagerCommand("view less version");
+
+            return GetVersionFromCommandResult(result);
+        }
+
+        public static bool IsCompilerUpdateAvailable()
+        {
+            Version currentVersion = GetCurrentCompilerVersion();
+            Version availableVersion = GetAvailableCompilerVersion();
+
+            return (currentVersion.CompareTo(availableVersion) < 0);
+        }
+
+        public static void UpdateCompiler()
+        {
+            ExecuteNodePackageManagerCommand("update less");
+        }
+
+        private static Version GetVersionFromCommandResult(CommandResult result)
+        {
+            if (result.IsSuccess)
+            {
                 Match versionMatch = Regex.Match(result.ResultText, "\\d+(?:\\.\\d+)+");
                 if (versionMatch.Groups.Count > 0)
                 {
-                    version = versionMatch.Groups[0].Value;
+                    return new Version(versionMatch.Groups[0].Value);
                 }
             }
-            return version;
+            return null;
         }
 
-        private static CompileCommandResult ExecuteCompileCommand(string lessPath, string cssPath, bool minify)
+        private static CommandResult ExecuteNodePackageManagerCommand(string arguments)
+        {
+            string fileName = string.Format("{0}\\node_modules\\.bin\\npm.cmd", Application.StartupPath);
+            return ExecuteCommand(fileName, arguments);
+        }
+
+        private static CommandResult ExecuteLessCommand(string arguments)
         {
             string fileName = string.Format("{0}\\node_modules\\.bin\\lessc.cmd", Application.StartupPath);
-            string arguments = CreateCompileArguments(lessPath, cssPath, minify);
+            return ExecuteCommand(fileName, arguments);
+        }
 
-            CompileCommandResult result = new CompileCommandResult(ExecuteCommand(fileName, arguments));
-            result.FullPath = lessPath;
+        private static CompileCommandResult ExecuteCompileCommand(string lessFile, string cssFile, bool minify)
+        { 
+            string arguments = CreateCompileArguments(lessFile, cssFile, minify);
+
+            CompileCommandResult result = new CompileCommandResult(ExecuteLessCommand(arguments));
+            result.FullPath = lessFile;
 
             return result;
         }
 
-        private static string CreateCompileArguments(string lessPath, string cssPath, bool minify)
+        private static string CreateCompileArguments(string lessFile, string cssFile, bool minify)
         {
-        string arguments = string.Format("\"{0}\" \"{1}\" --no-color", lessPath, cssPath);
+        string arguments = string.Format("\"{0}\" \"{1}\" --no-color", lessFile, cssFile);
             if (minify)
             {
                 arguments = string.Format("{0} --yui-compress", arguments);

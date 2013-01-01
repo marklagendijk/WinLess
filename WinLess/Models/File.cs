@@ -116,7 +116,7 @@ namespace WinLess.Models
         {
             if (this.Enabled)
             {
-                LessCompiler.CompileLessFile(this.FullPath, this.OutputPath, this.Minify);
+                LessCompiler.Compile(this.FullPath, this.OutputPath, this.Minify);
             }
             if (compileParentFiles)
             {
