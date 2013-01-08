@@ -178,7 +178,7 @@ namespace WinLess.Models
             if (!string.IsNullOrEmpty(fileText))
             {
                 // find the @imports using regex
-                MatchCollection matches = Regex.Matches(fileText, "@import [\"\\']?([^\"\\';]+)[\"\\']?;");
+                MatchCollection matches = Regex.Matches(fileText, "@import\\s*(?:url\\()?\\s*[\"\\']?([^\"\\'\\);]+)[\"\\']?\\s*\\)?\\s*;");
 
                 foreach (Match match in matches)
                 {
