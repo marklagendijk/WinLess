@@ -1,5 +1,13 @@
 ## Changelog
 
+### 1.8.0
+- Updated less.js to 1.3.3
+- Added automatic updating of less.js. On start WinLess now checks whether there is a new version of less.js available and offers to install it. This can disabled in the settings dialog. WinLess also performs this check when the about dialog is opened.
+
+### 1.7.1
+- Updated less.js to 1.3.2
+
+
 ### 1.7.0
 - Improved folder selection via 'Add folder' by using Ookii.VistaFolderBrowserDialog
 - Improved output path selection by changing 'select output folder' to 'select output file', @jmclocklin thanks for the help

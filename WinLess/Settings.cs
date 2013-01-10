@@ -14,12 +14,12 @@ namespace WinLess
         public Settings()
         {
             DirectoryList = new DirectoryList();
-            DefaultMinify = false;
+            DefaultMinify = true;
             CompileOnSave = true;
             ShowSuccessMessages = false;
             StartWithWindows = true;
             StartMinified = false;
-            ApplyStartWithWindows();
+            CheckForLessUpdates = true;
         }
 
         public DirectoryList DirectoryList { get; set; }
@@ -27,6 +27,7 @@ namespace WinLess
         public bool CompileOnSave { get; set; }
         public bool ShowSuccessMessages { get; set; }
         public bool StartMinified { get; set; }
+        public bool CheckForLessUpdates { get; set; }
 
         private bool startWithWindows;
         public bool StartWithWindows

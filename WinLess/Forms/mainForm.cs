@@ -51,10 +51,27 @@ namespace WinLess
                     AddExtension = true,
                     Filter = "*.css|*.css"
                 };
+
+                CheckForLessUpdates();
             }
             catch (Exception e)
             {
                 ExceptionHandler.LogException(e);
+            }
+        }
+
+        private void CheckForLessUpdates()
+        {
+            if (Program.Settings.CheckForLessUpdates)
+            {
+                if (LessCompiler.IsCompilerUpdateAvailable())
+                {
+                    if (MessageBox.Show(string.Format("WinLess uses the official LESS compiler, less.js, to compile your LESS files.\n\nA new version of less.js is available. Do you want to update less.js from {0} to {1}?", LessCompiler.GetCurrentCompilerVersion(), LessCompiler.GetAvailableCompilerVersion()), "Update LESS compiler?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        LessCompiler.UpdateCompiler();
+                        MessageBox.Show(string.Format("Succesfully updated less.js to version {0}", LessCompiler.GetCurrentCompilerVersion()), "LESS compiler update");
+                    }
+                }
             }
         }
 
@@ -506,7 +523,7 @@ namespace WinLess
             {
                 if (file.Enabled)
                 {
-                    LessCompiler.CompileLessFile(file.FullPath, file.OutputPath, file.Minify);
+                    LessCompiler.Compile(file.FullPath, file.OutputPath, file.Minify);
                 }
             }
         }
