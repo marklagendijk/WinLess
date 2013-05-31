@@ -28,6 +28,7 @@ namespace WinLess
         public bool ShowSuccessMessages { get; set; }
         public bool StartMinified { get; set; }
         public bool CheckForLessUpdates { get; set; }
+        public bool DefaultDebugInfo { get; set; }
 
         private bool startWithWindows;
         public bool StartWithWindows
