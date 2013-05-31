@@ -22,6 +22,7 @@ namespace WinLess.Models
             this.FullPath = fullPath;
             this.ProjectDirectoryPath = directory.FullPath;
             this.Minify = Program.Settings.DefaultMinify;
+            this.Debug = Program.Settings.DefaultDebugInfo;
             this.Enabled = true;
             this.OutputPath = GetInitialOutputPath();
             this.ParentFiles = new List<File>();
@@ -88,6 +89,12 @@ namespace WinLess.Models
             get;
             set;
         }
+        public bool Debug
+        {
+            get;
+            set;
+        }
+
 
         [XmlIgnore]
         public List<File> ParentFiles
@@ -116,7 +123,7 @@ namespace WinLess.Models
         {
             if (this.Enabled)
             {
-                LessCompiler.Compile(this.FullPath, this.OutputPath, this.Minify);
+                LessCompiler.Compile(this.FullPath, this.OutputPath, this.Minify, this.Debug);
             }
             if (compileParentFiles)
             {

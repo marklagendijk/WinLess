@@ -54,6 +54,8 @@ namespace WinLess
                     MessageBox.Show(string.Format("Succesfully updated less.js to version {0}", newVersion), "LESS compiler update");
                 }
             }            
-        }        
+        }
+
+            
     }
 }

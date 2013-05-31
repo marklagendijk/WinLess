@@ -92,6 +92,7 @@ namespace WinLess
                     foreach (Models.File file in directory.Files)
                     {
                         file.Minify = args.Minify;
+                        file.Debug = args.Debug;
                         if (args.InitialCompile)
                         {
                             file.Compile();
@@ -523,7 +524,7 @@ namespace WinLess
             {
                 if (file.Enabled)
                 {
-                    LessCompiler.Compile(file.FullPath, file.OutputPath, file.Minify);
+                    LessCompiler.Compile(file.FullPath, file.OutputPath, file.Minify, file.Debug);
                 }
             }
         }

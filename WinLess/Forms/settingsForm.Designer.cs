@@ -32,20 +32,21 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.generalGroupBox = new System.Windows.Forms.GroupBox();
+            this.checkForLessUpdatesCheckbox = new System.Windows.Forms.CheckBox();
             this.startMinimizedCheckBox = new System.Windows.Forms.CheckBox();
             this.startWithWindowsCheckBox = new System.Windows.Forms.CheckBox();
             this.compilingGroupBox = new System.Windows.Forms.GroupBox();
+            this.AddDebuggInfoCheckBox = new System.Windows.Forms.CheckBox();
             this.showSuccessMessagesCheckbox = new System.Windows.Forms.CheckBox();
             this.compileOnSaveCheckBox = new System.Windows.Forms.CheckBox();
             this.defaultMinifyCheckBox = new System.Windows.Forms.CheckBox();
-            this.checkForLessUpdatesCheckbox = new System.Windows.Forms.CheckBox();
             this.generalGroupBox.SuspendLayout();
             this.compilingGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(197, 233);
+            this.cancelButton.Location = new System.Drawing.Point(197, 275);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 0;
@@ -55,7 +56,7 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(116, 233);
+            this.okButton.Location = new System.Drawing.Point(116, 275);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 1;
@@ -74,6 +75,16 @@
             this.generalGroupBox.TabIndex = 2;
             this.generalGroupBox.TabStop = false;
             this.generalGroupBox.Text = "General";
+            // 
+            // checkForLessUpdatesCheckbox
+            // 
+            this.checkForLessUpdatesCheckbox.AutoSize = true;
+            this.checkForLessUpdatesCheckbox.Location = new System.Drawing.Point(7, 67);
+            this.checkForLessUpdatesCheckbox.Name = "checkForLessUpdatesCheckbox";
+            this.checkForLessUpdatesCheckbox.Size = new System.Drawing.Size(208, 17);
+            this.checkForLessUpdatesCheckbox.TabIndex = 2;
+            this.checkForLessUpdatesCheckbox.Text = "Automatically check for less.js updates";
+            this.checkForLessUpdatesCheckbox.UseVisualStyleBackColor = true;
             // 
             // startMinimizedCheckBox
             // 
@@ -97,15 +108,26 @@
             // 
             // compilingGroupBox
             // 
+            this.compilingGroupBox.Controls.Add(this.AddDebuggInfoCheckBox);
             this.compilingGroupBox.Controls.Add(this.showSuccessMessagesCheckbox);
             this.compilingGroupBox.Controls.Add(this.compileOnSaveCheckBox);
             this.compilingGroupBox.Controls.Add(this.defaultMinifyCheckBox);
             this.compilingGroupBox.Location = new System.Drawing.Point(13, 127);
             this.compilingGroupBox.Name = "compilingGroupBox";
-            this.compilingGroupBox.Size = new System.Drawing.Size(259, 100);
+            this.compilingGroupBox.Size = new System.Drawing.Size(259, 122);
             this.compilingGroupBox.TabIndex = 3;
             this.compilingGroupBox.TabStop = false;
             this.compilingGroupBox.Text = "Compiling";
+            // 
+            // AddDebuggInfoCheckBox
+            // 
+            this.AddDebuggInfoCheckBox.AutoSize = true;
+            this.AddDebuggInfoCheckBox.Location = new System.Drawing.Point(6, 91);
+            this.AddDebuggInfoCheckBox.Name = "AddDebuggInfoCheckBox";
+            this.AddDebuggInfoCheckBox.Size = new System.Drawing.Size(147, 17);
+            this.AddDebuggInfoCheckBox.TabIndex = 3;
+            this.AddDebuggInfoCheckBox.Text = "Add debug info as default";
+            this.AddDebuggInfoCheckBox.UseVisualStyleBackColor = true;
             // 
             // showSuccessMessagesCheckbox
             // 
@@ -137,21 +159,11 @@
             this.defaultMinifyCheckBox.Text = "Minify by default";
             this.defaultMinifyCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkForLessUpdatesCheckbox
-            // 
-            this.checkForLessUpdatesCheckbox.AutoSize = true;
-            this.checkForLessUpdatesCheckbox.Location = new System.Drawing.Point(7, 67);
-            this.checkForLessUpdatesCheckbox.Name = "checkForLessUpdatesCheckbox";
-            this.checkForLessUpdatesCheckbox.Size = new System.Drawing.Size(208, 17);
-            this.checkForLessUpdatesCheckbox.TabIndex = 2;
-            this.checkForLessUpdatesCheckbox.Text = "Automatically check for less.js updates";
-            this.checkForLessUpdatesCheckbox.UseVisualStyleBackColor = true;
-            // 
             // settingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 268);
+            this.ClientSize = new System.Drawing.Size(289, 325);
             this.Controls.Add(this.compilingGroupBox);
             this.Controls.Add(this.generalGroupBox);
             this.Controls.Add(this.okButton);
@@ -179,5 +191,6 @@
         private System.Windows.Forms.CheckBox compileOnSaveCheckBox;
         private System.Windows.Forms.CheckBox showSuccessMessagesCheckbox;
         private System.Windows.Forms.CheckBox checkForLessUpdatesCheckbox;
+        private System.Windows.Forms.CheckBox AddDebuggInfoCheckBox;
     }
 }
