@@ -48,6 +48,26 @@ namespace WinLess
         {
             saveSettings();
             this.Close();
+        }
+
+        private void AddDebuggInfoCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (defaultMinifyCheckBox.Checked && AddDebuggInfoCheckBox.Checked)
+            {
+                MessageBox.Show("You can´t add debug info when minifying. Please uncheck '" + defaultMinifyCheckBox.Text + "'", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AddDebuggInfoCheckBox.Checked = false;
+                return;
+            }
+        }
+
+        private void defaultMinifyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (defaultMinifyCheckBox.Checked && AddDebuggInfoCheckBox.Checked)
+            {
+                MessageBox.Show("You can´t minifying and add debug info. Please uncheck '" + AddDebuggInfoCheckBox.Text + "'", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AddDebuggInfoCheckBox.Checked = false;
+                return;
+            }
         }      
     }
 }

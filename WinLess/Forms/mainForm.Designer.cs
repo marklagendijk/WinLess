@@ -272,6 +272,7 @@
             this.filesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.filesDataGridView.Size = new System.Drawing.Size(581, 303);
             this.filesDataGridView.TabIndex = 5;
+            this.filesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellContentClick);
             this.filesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellDoubleClick);
             this.filesDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellEndEdit);
             this.filesDataGridView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.filesDataGridView_CellMouseDown);
@@ -497,18 +498,22 @@
             // 
             this.minifyDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.minifyDataGridViewCheckBoxColumn.DataPropertyName = "Minify";
+            this.minifyDataGridViewCheckBoxColumn.FalseValue = "false";
             this.minifyDataGridViewCheckBoxColumn.HeaderText = "Minify";
             this.minifyDataGridViewCheckBoxColumn.MinimumWidth = 40;
             this.minifyDataGridViewCheckBoxColumn.Name = "minifyDataGridViewCheckBoxColumn";
+            this.minifyDataGridViewCheckBoxColumn.TrueValue = "true";
             this.minifyDataGridViewCheckBoxColumn.Width = 40;
             // 
             // debugDataGridViewCheckBoxColumn
             // 
             this.debugDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.debugDataGridViewCheckBoxColumn.DataPropertyName = "Debug";
+            this.debugDataGridViewCheckBoxColumn.FalseValue = "false";
             this.debugDataGridViewCheckBoxColumn.HeaderText = "Debug";
             this.debugDataGridViewCheckBoxColumn.MinimumWidth = 40;
             this.debugDataGridViewCheckBoxColumn.Name = "debugDataGridViewCheckBoxColumn";
+            this.debugDataGridViewCheckBoxColumn.TrueValue = "true";
             this.debugDataGridViewCheckBoxColumn.Width = 45;
             // 
             // mainForm

@@ -128,6 +128,7 @@
             this.AddDebuggInfoCheckBox.TabIndex = 3;
             this.AddDebuggInfoCheckBox.Text = "Add debug info as default";
             this.AddDebuggInfoCheckBox.UseVisualStyleBackColor = true;
+            this.AddDebuggInfoCheckBox.CheckedChanged += new System.EventHandler(this.AddDebuggInfoCheckBox_CheckedChanged);
             // 
             // showSuccessMessagesCheckbox
             // 
@@ -158,6 +159,7 @@
             this.defaultMinifyCheckBox.TabIndex = 0;
             this.defaultMinifyCheckBox.Text = "Minify by default";
             this.defaultMinifyCheckBox.UseVisualStyleBackColor = true;
+            this.defaultMinifyCheckBox.CheckedChanged += new System.EventHandler(this.defaultMinifyCheckBox_CheckedChanged);
             // 
             // settingsForm
             // 
