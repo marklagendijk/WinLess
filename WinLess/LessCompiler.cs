@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
@@ -48,7 +49,7 @@ namespace WinLess
 
         public static void UpdateCompiler()
         {
-            ExecuteNodePackageManagerCommand("update less");
+            ExecuteNodePackageManagerCommand("update less", true);
         }
 
         private static Version GetVersionFromCommandResult(CommandResult result)
@@ -64,10 +65,18 @@ namespace WinLess
             return null;
         }
 
-        private static CommandResult ExecuteNodePackageManagerCommand(string arguments)
+        private static CommandResult ExecuteNodePackageManagerCommand(string arguments, bool elevated = false)
         {
             string fileName = string.Format("{0}\\node_modules\\.bin\\npm.cmd", Application.StartupPath);
-            return ExecuteCommand(fileName, arguments);
+            if (elevated)
+            {
+				ExecuteElevatedCommand(fileName, arguments);
+	            return null;
+            }
+            else
+            {
+				return ExecuteCommand(fileName, arguments);  
+            }
         }
 
         private static CommandResult ExecuteLessCommand(string arguments)
@@ -97,25 +106,51 @@ namespace WinLess
             return arguments;
         }
 
+		private static void ExecuteElevatedCommand(string fileName, string arguments)
+		{
+			try
+			{
+				var process = new Process {
+					StartInfo = new ProcessStartInfo()
+					{
+						FileName = fileName,
+						Arguments = arguments,
+						WindowStyle = ProcessWindowStyle.Hidden,
+						CreateNoWindow = true,
+						UseShellExecute = false,
+						RedirectStandardError = true,
+						RedirectStandardOutput = true
+					}
+				};
+
+				process.Start();
+				process.WaitForExit();
+			}
+
+			catch (Exception e)
+			{
+				ExceptionHandler.LogException(e);
+			}
+		}
+
         private static CommandResult ExecuteCommand(string fileName, string arguments){
-            CommandResult result = new CommandResult();            
+            var result = new CommandResult();            
             
             try
             {
-                System.Diagnostics.Process process = new System.Diagnostics.Process();
-
-                process.StartInfo = new System.Diagnostics.ProcessStartInfo()
+                var startInfo = new ProcessStartInfo()
                 {
                     FileName = fileName,
                     Arguments = arguments,
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    WindowStyle = ProcessWindowStyle.Hidden,
                     CreateNoWindow = true,
                     UseShellExecute = false,
                     RedirectStandardError = true,
                     RedirectStandardOutput = true
                 };
 
-                process.Start();
+	            var process = new Process { StartInfo = startInfo };
+	            process.Start();
 
                 string error = process.StandardError.ReadToEnd();
                 if(error.Length > 0){
