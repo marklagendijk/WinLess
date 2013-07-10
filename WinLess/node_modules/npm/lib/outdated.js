@@ -24,7 +24,6 @@ var path = require("path")
   , cache = require("./cache.js")
   , asyncMap = require("slide").asyncMap
   , npm = require("./npm.js")
-  , semver = require("semver")
 
 function outdated (args, silent, cb) {
   if (typeof cb !== "function") cb = silent, silent = false
@@ -76,6 +75,7 @@ function outdated_ (args, dir, parentHas, cb) {
 
   var deps = null
   readJson(path.resolve(dir, "package.json"), function (er, d) {
+    if (er && er.code !== "ENOENT" && er.code !== "ENOTDIR") return cb(er)
     deps = (er) ? true : (d.dependencies || {})
     return next()
   })
@@ -86,9 +86,13 @@ function outdated_ (args, dir, parentHas, cb) {
       has = Object.create(parentHas)
       return next()
     }
+    pkgs = pkgs.filter(function (p) {
+      return !p.match(/^[\._-]/)
+    })
     asyncMap(pkgs, function (pkg, cb) {
       var jsonFile = path.resolve(dir, "node_modules", pkg, "package.json")
       readJson(jsonFile, function (er, d) {
+        if (er && er.code !== "ENOENT" && er.code !== "ENOTDIR") return cb(er)
         cb(null, er ? [] : [[d.name, d.version]])
       })
     }, function (er, pvs) {
@@ -133,7 +137,7 @@ function shouldUpdate (args, dir, dep, has, req, cb) {
   }
 
   function doIt (shouldHave) {
-    cb(null, [[ dir, dep, has[dep], shouldHave ]])
+    cb(null, [[ dir, dep, has[dep], shouldHave, req ]])
   }
 
   if (args.length && args.indexOf(dep) === -1) {

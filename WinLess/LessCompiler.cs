@@ -33,7 +33,7 @@ namespace WinLess
         }
 
         public static Version GetAvailableCompilerVersion()
-        {
+        {            
             CommandResult result = ExecuteNodePackageManagerCommand("view less version");
 
             return GetVersionFromCommandResult(result);
@@ -70,7 +70,7 @@ namespace WinLess
             string fileName = string.Format("{0}\\node_modules\\.bin\\npm.cmd", Application.StartupPath);
             if (elevated)
             {
-				ExecuteElevatedCommand(fileName, arguments);
+                ExecuteElevatedCommand(fileName, arguments);
 	            return null;
             }
             else
@@ -113,13 +113,11 @@ namespace WinLess
 				var process = new Process {
 					StartInfo = new ProcessStartInfo()
 					{
-						FileName = fileName,
+						WorkingDirectory = Application.StartupPath,
+                        FileName = fileName,
 						Arguments = arguments,
-						WindowStyle = ProcessWindowStyle.Hidden,
-						CreateNoWindow = true,
-						UseShellExecute = false,
-						RedirectStandardError = true,
-						RedirectStandardOutput = true
+						UseShellExecute = true,
+                        Verb = "runas"
 					}
 				};
 
@@ -129,7 +127,7 @@ namespace WinLess
 
 			catch (Exception e)
 			{
-				ExceptionHandler.LogException(e);
+                ExceptionHandler.LogException(e);
 			}
 		}
 
@@ -140,6 +138,7 @@ namespace WinLess
             {
                 var startInfo = new ProcessStartInfo()
                 {
+                    WorkingDirectory = Application.StartupPath,
                     FileName = fileName,
                     Arguments = arguments,
                     WindowStyle = ProcessWindowStyle.Hidden,

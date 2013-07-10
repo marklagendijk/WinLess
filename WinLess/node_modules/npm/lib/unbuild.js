@@ -45,7 +45,8 @@ function rmStuff (pkg, folder, cb) {
 
   readJson.cache.del(path.resolve(folder, "package.json"))
 
-  log.verbose([top, gnm, parent], "unbuild "+pkg._id)
+  log.verbose([top, gnm, parent], "unbuild " + pkg._id)
+  console.log("unbuild " + pkg._id)
   asyncMap([rmBins, rmMans], function (fn, cb) {
     fn(pkg, folder, parent, top, cb)
   }, cb)
@@ -76,19 +77,27 @@ function rmMans (pkg, folder, parent, top, cb) {
   }
   var manRoot = path.resolve(npm.config.get("prefix"), "share", "man")
   asyncMap(pkg.man, function (man, cb) {
-    var parseMan = man.match(/(.*)\.([0-9]+)(\.gz)?$/)
-      , stem = parseMan[1]
-      , sxn = parseMan[2]
-      , gz = parseMan[3] || ""
-      , bn = path.basename(stem)
-      , manDest = path.join( manRoot
-                           , "man"+sxn
-                           , (bn.indexOf(pkg.name) === 0 ? bn
-                             : pkg.name + "-" + bn)
-                             + "." + sxn + gz
-                           )
-    gentlyRm( manDest
-            , !npm.config.get("force") && folder
-            , cb )
+    if (Array.isArray(man)) {
+      man.forEach(rm)
+    } else {
+      rm(man)
+    }
+
+    function rm(man) {
+      var parseMan = man.match(/(.*)\.([0-9]+)(\.gz)?$/)
+        , stem = parseMan[1]
+        , sxn = parseMan[2]
+        , gz = parseMan[3] || ""
+        , bn = path.basename(stem)
+        , manDest = path.join( manRoot
+                            , "man"+sxn
+                            , (bn.indexOf(pkg.name) === 0 ? bn
+                              : pkg.name + "-" + bn)
+                              + "." + sxn + gz
+                            )
+      gentlyRm( manDest
+              , !npm.config.get("force") && folder
+              , cb )
+    }
   }, cb)
 }
