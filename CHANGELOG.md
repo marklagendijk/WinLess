@@ -1,5 +1,10 @@
 ## Changelog
 
+### 1.8.1
+- Updated less.js to 1.4.1
+- Partial fix for automatic less.js updating mechanism, it should now work when you run WinLess as admin. Proper fix is still needed.
+
+
 ### 1.8.0
 - Updated less.js to 1.3.3
 - Added automatic updating of less.js. On start WinLess now checks whether there is a new version of less.js available and offers to install it. This can disabled in the settings dialog. WinLess also performs this check when the about dialog is opened.
