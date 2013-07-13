@@ -15,6 +15,7 @@ namespace WinLess.Models
             Minify = false;
             InitialCompile = false;
             ClearDirectories = false;
+            Debug = false;
 
             if (HasArguments)
             {
@@ -45,6 +46,11 @@ namespace WinLess.Models
                         "h|help",
                         "Show this message and exit",
                         v=> ShowHelp = v != null
+                    },
+                    {
+                        "debug",
+                         "Add the 'debug' flag to add debug info",
+                         v=> Debug = v != null
                     }
                 };
 
@@ -90,6 +96,7 @@ namespace WinLess.Models
         public bool Minify { get; set; }
         public bool InitialCompile { get; set; }
         public bool ClearDirectories { get; set; }
+        public bool Debug { get; set; }
 
         #endregion
 

@@ -92,6 +92,7 @@ namespace WinLess
                     foreach (Models.File file in directory.Files)
                     {
                         file.Minify = args.Minify;
+                        file.Debug = args.Debug;
                         if (args.InitialCompile)
                         {
                             file.Compile();
@@ -523,11 +524,60 @@ namespace WinLess
             {
                 if (file.Enabled)
                 {
-                    LessCompiler.Compile(file.FullPath, file.OutputPath, file.Minify);
+                    LessCompiler.Compile(file.FullPath, file.OutputPath, file.Minify, file.Debug);
                 }
             }
         }
 
         #endregion
+
+        private void filesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            bool minifyed, debug;
+            //DataGridViewCheckBoxCell currentCell;
+
+            minifyed = (bool)dgv.CurrentRow.Cells[3].EditedFormattedValue;
+            debug = (bool)dgv.CurrentRow.Cells[4].EditedFormattedValue;
+
+            if (dgv.CurrentCell.ColumnIndex == 3 || dgv.CurrentCell.ColumnIndex == 4)
+            {
+                if (minifyed && debug)
+                {
+                    MessageBox.Show("You can´t minify and add debug.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dgv.CurrentRow.Cells[4].Value = false;
+                    dgv.CurrentRow.Cells[3].Value = false;
+                    return;
+                }
+                
+                /*currentCell = (DataGridViewCheckBoxCell)dgv.CurrentCell;
+                switch (currentCell.ColumnIndex)
+                {
+                    case 3:
+                        //Minfy
+                        if ((bool)dgv.CurrentCell.EditedFormattedValue == true)
+                        {
+                            if (minifyed)
+                            {
+                                MessageBox.Show("You can´t minify when debug is checked.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                dgv.CurrentRow.Cells[4].Value = false;
+                                dgv.CurrentRow.Cells[3].Value = false;
+                                return;
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                        break;
+                    case 4:
+                           dgv.CurrentRow.Cells[4].Value = false;
+                           dgv.CurrentRow.Cells[3].Value = false;
+                        //debug
+                        break;
+                } */
+            }
+            
+        }
     }
 }

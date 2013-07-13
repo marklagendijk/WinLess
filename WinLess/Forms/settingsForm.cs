@@ -24,6 +24,7 @@ namespace WinLess
             defaultMinifyCheckBox.Checked = Program.Settings.DefaultMinify;
             compileOnSaveCheckBox.Checked = Program.Settings.CompileOnSave;
             showSuccessMessagesCheckbox.Checked = Program.Settings.ShowSuccessMessages;
+            AddDebuggInfoCheckBox.Checked = Program.Settings.DefaultDebugInfo;
         }
 
         private void saveSettings()
@@ -34,6 +35,7 @@ namespace WinLess
             Program.Settings.DefaultMinify = defaultMinifyCheckBox.Checked;
             Program.Settings.CompileOnSave = compileOnSaveCheckBox.Checked;
             Program.Settings.ShowSuccessMessages = showSuccessMessagesCheckbox.Checked;
+            Program.Settings.DefaultDebugInfo = AddDebuggInfoCheckBox.Checked;
             Program.Settings.SaveSettings();
         }
 
@@ -47,5 +49,25 @@ namespace WinLess
             saveSettings();
             this.Close();
         }
+
+        private void AddDebuggInfoCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (defaultMinifyCheckBox.Checked && AddDebuggInfoCheckBox.Checked)
+            {
+                MessageBox.Show("You can´t add debug info when minifying. Please uncheck '" + defaultMinifyCheckBox.Text + "'", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AddDebuggInfoCheckBox.Checked = false;
+                return;
+            }
+        }
+
+        private void defaultMinifyCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (defaultMinifyCheckBox.Checked && AddDebuggInfoCheckBox.Checked)
+            {
+                MessageBox.Show("You can´t minifying and add debug info. Please uncheck '" + AddDebuggInfoCheckBox.Text + "'", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AddDebuggInfoCheckBox.Checked = false;
+                return;
+            }
+        }      
     }
 }

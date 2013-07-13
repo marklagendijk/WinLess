@@ -50,10 +50,6 @@
             this.directoryFilesSplitContainer = new System.Windows.Forms.SplitContainer();
             this.foldersListBox = new System.Windows.Forms.ListBox();
             this.filesDataGridView = new System.Windows.Forms.DataGridView();
-            this.enabledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.fullPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.outputPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minifyDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.compileSelectedButton = new System.Windows.Forms.Button();
             this.addDirectoryButton = new System.Windows.Forms.Button();
             this.refreshDirectoryButton = new System.Windows.Forms.Button();
@@ -71,6 +67,11 @@
             this.compileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIconMenuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.enabledDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.fullPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.outputPathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minifyDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.debugDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.directoryBindingSource)).BeginInit();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileBindingSource)).BeginInit();
@@ -144,7 +145,7 @@
             this.fileOpenFolderToolStripMenuItem,
             this.fileSelectOutputToolStripMenuItem});
             this.fileContextMenuStrip.Name = "fileContextMenuStrip";
-            this.fileContextMenuStrip.Size = new System.Drawing.Size(198, 92);
+            this.fileContextMenuStrip.Size = new System.Drawing.Size(198, 70);
             // 
             // openFiletoolStripMenuItem
             // 
@@ -253,7 +254,8 @@
             this.enabledDataGridViewTextBoxColumn,
             this.fullPathDataGridViewTextBoxColumn,
             this.outputPathDataGridViewTextBoxColumn,
-            this.minifyDataGridViewCheckBoxColumn});
+            this.minifyDataGridViewCheckBoxColumn,
+            this.debugDataGridViewCheckBoxColumn});
             this.filesDataGridView.DataSource = this.fileBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -270,48 +272,10 @@
             this.filesDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.filesDataGridView.Size = new System.Drawing.Size(581, 303);
             this.filesDataGridView.TabIndex = 5;
+            this.filesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellContentClick);
             this.filesDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellDoubleClick);
             this.filesDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.filesDataGridView_CellEndEdit);
             this.filesDataGridView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.filesDataGridView_CellMouseDown);
-            // 
-            // enabledDataGridViewTextBoxColumn
-            // 
-            this.enabledDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.enabledDataGridViewTextBoxColumn.DataPropertyName = "Enabled";
-            this.enabledDataGridViewTextBoxColumn.HeaderText = "";
-            this.enabledDataGridViewTextBoxColumn.MinimumWidth = 30;
-            this.enabledDataGridViewTextBoxColumn.Name = "enabledDataGridViewTextBoxColumn";
-            this.enabledDataGridViewTextBoxColumn.Width = 30;
-            // 
-            // fullPathDataGridViewTextBoxColumn
-            // 
-            this.fullPathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fullPathDataGridViewTextBoxColumn.ContextMenuStrip = this.fileContextMenuStrip;
-            this.fullPathDataGridViewTextBoxColumn.DataPropertyName = "RelativePath";
-            this.fullPathDataGridViewTextBoxColumn.HeaderText = "File";
-            this.fullPathDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.fullPathDataGridViewTextBoxColumn.Name = "fullPathDataGridViewTextBoxColumn";
-            this.fullPathDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullPathDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // outputPathDataGridViewTextBoxColumn
-            // 
-            this.outputPathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.outputPathDataGridViewTextBoxColumn.ContextMenuStrip = this.fileContextMenuStrip;
-            this.outputPathDataGridViewTextBoxColumn.DataPropertyName = "RelativeOutputPath";
-            this.outputPathDataGridViewTextBoxColumn.HeaderText = "Output file";
-            this.outputPathDataGridViewTextBoxColumn.MinimumWidth = 150;
-            this.outputPathDataGridViewTextBoxColumn.Name = "outputPathDataGridViewTextBoxColumn";
-            this.outputPathDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // minifyDataGridViewCheckBoxColumn
-            // 
-            this.minifyDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.minifyDataGridViewCheckBoxColumn.DataPropertyName = "Minify";
-            this.minifyDataGridViewCheckBoxColumn.HeaderText = "Minify";
-            this.minifyDataGridViewCheckBoxColumn.MinimumWidth = 40;
-            this.minifyDataGridViewCheckBoxColumn.Name = "minifyDataGridViewCheckBoxColumn";
-            this.minifyDataGridViewCheckBoxColumn.Width = 40;
             // 
             // compileSelectedButton
             // 
@@ -500,6 +464,58 @@
             this.logoPictureBox.TabIndex = 9;
             this.logoPictureBox.TabStop = false;
             // 
+            // enabledDataGridViewTextBoxColumn
+            // 
+            this.enabledDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.enabledDataGridViewTextBoxColumn.DataPropertyName = "Enabled";
+            this.enabledDataGridViewTextBoxColumn.HeaderText = "";
+            this.enabledDataGridViewTextBoxColumn.MinimumWidth = 30;
+            this.enabledDataGridViewTextBoxColumn.Name = "enabledDataGridViewTextBoxColumn";
+            this.enabledDataGridViewTextBoxColumn.Width = 30;
+            // 
+            // fullPathDataGridViewTextBoxColumn
+            // 
+            this.fullPathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fullPathDataGridViewTextBoxColumn.ContextMenuStrip = this.fileContextMenuStrip;
+            this.fullPathDataGridViewTextBoxColumn.DataPropertyName = "RelativePath";
+            this.fullPathDataGridViewTextBoxColumn.HeaderText = "File";
+            this.fullPathDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.fullPathDataGridViewTextBoxColumn.Name = "fullPathDataGridViewTextBoxColumn";
+            this.fullPathDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullPathDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // outputPathDataGridViewTextBoxColumn
+            // 
+            this.outputPathDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.outputPathDataGridViewTextBoxColumn.ContextMenuStrip = this.fileContextMenuStrip;
+            this.outputPathDataGridViewTextBoxColumn.DataPropertyName = "RelativeOutputPath";
+            this.outputPathDataGridViewTextBoxColumn.HeaderText = "Output file";
+            this.outputPathDataGridViewTextBoxColumn.MinimumWidth = 150;
+            this.outputPathDataGridViewTextBoxColumn.Name = "outputPathDataGridViewTextBoxColumn";
+            this.outputPathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // minifyDataGridViewCheckBoxColumn
+            // 
+            this.minifyDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.minifyDataGridViewCheckBoxColumn.DataPropertyName = "Minify";
+            this.minifyDataGridViewCheckBoxColumn.FalseValue = "false";
+            this.minifyDataGridViewCheckBoxColumn.HeaderText = "Minify";
+            this.minifyDataGridViewCheckBoxColumn.MinimumWidth = 40;
+            this.minifyDataGridViewCheckBoxColumn.Name = "minifyDataGridViewCheckBoxColumn";
+            this.minifyDataGridViewCheckBoxColumn.TrueValue = "true";
+            this.minifyDataGridViewCheckBoxColumn.Width = 40;
+            // 
+            // debugDataGridViewCheckBoxColumn
+            // 
+            this.debugDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.debugDataGridViewCheckBoxColumn.DataPropertyName = "Debug";
+            this.debugDataGridViewCheckBoxColumn.FalseValue = "false";
+            this.debugDataGridViewCheckBoxColumn.HeaderText = "Debug";
+            this.debugDataGridViewCheckBoxColumn.MinimumWidth = 40;
+            this.debugDataGridViewCheckBoxColumn.Name = "debugDataGridViewCheckBoxColumn";
+            this.debugDataGridViewCheckBoxColumn.TrueValue = "true";
+            this.debugDataGridViewCheckBoxColumn.Width = 45;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,15 +583,16 @@
         private System.Windows.Forms.SplitContainer directoryFilesSplitContainer;
         private System.Windows.Forms.ListBox foldersListBox;
         private System.Windows.Forms.DataGridView filesDataGridView;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn enabledDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullPathDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn outputPathDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn minifyDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Button compileSelectedButton;
         private System.Windows.Forms.Button addDirectoryButton;
         private System.Windows.Forms.Button refreshDirectoryButton;
         private System.Windows.Forms.Button removeDirectoryButton;
         private System.Windows.Forms.ToolStripMenuItem compileToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn enabledDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullPathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn outputPathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn minifyDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn debugDataGridViewCheckBoxColumn;
     }
 }
 

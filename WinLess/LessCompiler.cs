@@ -7,16 +7,17 @@ using System.IO;
 using WinLess.Models;
 using WinLess.Helpers;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace WinLess
 {
     public static class LessCompiler
     {        
-        public static void Compile(string lessFile, string cssFile, bool minify)
+        public static void Compile(string lessFile, string cssFile, bool minify, bool addDebugInfo)
         {
             try
             {
-                CompileCommandResult compileResult = ExecuteCompileCommand(lessFile, cssFile, minify);
+                CompileCommandResult compileResult = ExecuteCompileCommand(lessFile, cssFile, minify, addDebugInfo);
                 mainForm.ActiveOrInActiveMainForm.AddCompileResult(compileResult);
             }
             catch (Exception e)
@@ -85,22 +86,27 @@ namespace WinLess
             return ExecuteCommand(fileName, arguments);
         }
 
-        private static CompileCommandResult ExecuteCompileCommand(string lessFile, string cssFile, bool minify)
-        { 
-            string arguments = CreateCompileArguments(lessFile, cssFile, minify);
+        private static CompileCommandResult ExecuteCompileCommand(string lessFile, string cssFile, bool minify, bool addDebugInfo)
+        {
+            string arguments = CreateCompileArguments(lessFile, cssFile, minify, addDebugInfo);
 
             CompileCommandResult result = new CompileCommandResult(ExecuteLessCommand(arguments));
             result.FullPath = lessFile;
-
+           
             return result;
         }
 
-        private static string CreateCompileArguments(string lessFile, string cssFile, bool minify)
+        private static string CreateCompileArguments(string lessFile, string cssFile, bool minify, bool addDebugInfo)
         {
         string arguments = string.Format("\"{0}\" \"{1}\" --no-color", lessFile, cssFile);
             if (minify)
             {
                 arguments = string.Format("{0} --yui-compress", arguments);
+            }
+
+            if (addDebugInfo)
+            {
+                arguments = string.Format("{0} --line-numbers=all", arguments);
             }
 
             return arguments;
@@ -174,5 +180,6 @@ namespace WinLess
 
             return result;
         }
+       
     }
 }

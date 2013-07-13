@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(aboutForm));
             this.versionGroupBox = new System.Windows.Forms.GroupBox();
+            this.updatingLabel = new System.Windows.Forms.Label();
             this.checkingForUpdatesLabel = new System.Windows.Forms.Label();
             this.lessjsVersionLabel = new System.Windows.Forms.Label();
             this.lessjsLabel = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.authorNameLabel = new System.Windows.Forms.Label();
             this.graphicalDesignLabel = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
-            this.updatingLabel = new System.Windows.Forms.Label();
             this.versionGroupBox.SuspendLayout();
             this.creditsGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,16 @@
             this.versionGroupBox.TabIndex = 1;
             this.versionGroupBox.TabStop = false;
             this.versionGroupBox.Text = "Version info";
+            // 
+            // updatingLabel
+            // 
+            this.updatingLabel.AutoSize = true;
+            this.updatingLabel.Location = new System.Drawing.Point(165, 37);
+            this.updatingLabel.Name = "updatingLabel";
+            this.updatingLabel.Size = new System.Drawing.Size(59, 13);
+            this.updatingLabel.TabIndex = 5;
+            this.updatingLabel.Text = "Updating...";
+            this.updatingLabel.Visible = false;
             // 
             // checkingForUpdatesLabel
             // 
@@ -153,16 +163,6 @@
             this.authorLabel.Size = new System.Drawing.Size(41, 13);
             this.authorLabel.TabIndex = 0;
             this.authorLabel.Text = "Author:";
-            // 
-            // updatingLabel
-            // 
-            this.updatingLabel.AutoSize = true;
-            this.updatingLabel.Location = new System.Drawing.Point(165, 37);
-            this.updatingLabel.Name = "updatingLabel";
-            this.updatingLabel.Size = new System.Drawing.Size(59, 13);
-            this.updatingLabel.TabIndex = 5;
-            this.updatingLabel.Text = "Updating...";
-            this.updatingLabel.Visible = false;
             // 
             // aboutForm
             // 
