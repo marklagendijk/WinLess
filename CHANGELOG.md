@@ -1,5 +1,8 @@
 ## Changelog
 
+### 1.8.2
+- Updated less.js to 1.5.0
+
 ### 1.8.1
 - Updated less.js to 1.4.1
 - Partial fix for automatic less.js updating mechanism, it should now work when you run WinLess as admin. Proper fix is still needed.
