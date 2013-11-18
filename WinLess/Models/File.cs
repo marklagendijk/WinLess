@@ -19,13 +19,26 @@ namespace WinLess.Models
         
         public File(Models.Directory directory, string fullPath)
         {
-            this.FullPath = fullPath;
-            this.ProjectDirectoryPath = directory.FullPath;
-            this.Minify = Program.Settings.DefaultMinify;
-            this.Enabled = true;
-            this.OutputPath = GetInitialOutputPath();
-            this.ParentFiles = new List<File>();
-            CheckForImports();
+            initModel(directory.FullPath, fullPath, Program.Settings.DefaultMinify);            
+        }
+
+        public File(string absoluteFileName, bool minify)
+        {
+            try
+            {
+                FileInfo file = new FileInfo(absoluteFileName);
+                
+                    if ((string.Compare(file.Extension, ".less", StringComparison.InvariantCultureIgnoreCase) == 0 ||
+                        (string.Compare(file.Extension, ".css", StringComparison.InvariantCultureIgnoreCase) == 0) && file.Name.Contains(".less")
+                       ) )
+                    {
+                        initModel(file.DirectoryName, absoluteFileName, minify);                        
+                    }
+                       
+
+                
+            }
+            catch { }
         }
 
         #endregion
@@ -133,6 +146,17 @@ namespace WinLess.Models
         #endregion
 
         #region Private Methods
+
+        private void initModel(string directory, string fullPath, bool minify)
+        {
+            this.FullPath = fullPath;
+            this.ProjectDirectoryPath = directory;
+            this.Minify = minify;
+            this.Enabled = true;
+            this.OutputPath = GetInitialOutputPath();
+            this.ParentFiles = new List<File>();
+            CheckForImports();
+        }
 
         private string GetInitialOutputPath()
         {           

@@ -19,11 +19,17 @@ namespace WinLess.Models
             if (HasArguments)
             {
                 DirectoryPaths = new List<string>();
+                FilePaths = new List<string>();
                 OptionSet optionSet = new OptionSet(){
                     {
                         "d|directory=",
                         "The {DIRECTORY} you want WinLess to watch. Can be used multiple times. Directories are added to the current directory list.",
                         v=> DirectoryPaths.Add(v)
+                    },
+                    {
+                        "f|file=",
+                        "The File you want WinLess to compile. Can be used multiple times. Files are added to the current file list.",
+                        v=> FilePaths.Add(v)
                     },
                     {
                         "minify",
@@ -87,6 +93,7 @@ namespace WinLess.Models
         public bool ShowHelp { get; set; }
 
         public List<string> DirectoryPaths { get; set; }
+        public List<string> FilePaths { get; set; }
         public bool Minify { get; set; }
         public bool InitialCompile { get; set; }
         public bool ClearDirectories { get; set; }

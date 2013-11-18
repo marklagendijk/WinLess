@@ -99,7 +99,7 @@ namespace WinLess.Models
         {
             try
             {
-                FileInfo[] files = directoryInfo.GetFiles();
+                FileInfo[] files = directoryInfo.GetFiles();                
                 foreach (FileInfo file in files)
                 {
                     if ((string.Compare(file.Extension, ".less", StringComparison.InvariantCultureIgnoreCase) == 0 ||
