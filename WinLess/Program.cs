@@ -18,7 +18,7 @@ namespace WinLess
             CommandArguments commandLineArguments = new CommandArguments(args);
             if (!commandLineArguments.ConsoleExit)
             {
-                if (commandLineArguments.FilePaths.Count > 0)
+                if (commandLineArguments.HasArguments && commandLineArguments.FilePaths.Count > 0)
                 {
                     Program.Settings = Settings.LoadSettings();
                     LoadFiles(commandLineArguments);
