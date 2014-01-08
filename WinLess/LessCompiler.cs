@@ -100,7 +100,7 @@ namespace WinLess
         string arguments = string.Format("\"{0}\" \"{1}\" --no-color", lessFile, cssFile);
             if (minify)
             {
-                arguments = string.Format("{0} --yui-compress", arguments);
+                arguments = string.Format("{0} --clean-css --clean-option=--selectors-merge-mode:ie8", arguments);
             }
 
             return arguments;

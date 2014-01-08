@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WinLess.lessc</id>
+    <version>1.0.14</version>
+    <title>WinLess.lessc</title>
+    <authors>Mark Lagendijk</authors>
+    <owners>Mark Lagendijk</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>http://winless.org/lessc</projectUrl>
+    <iconUrl>http://winless.org/winless_lessc/icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Easily compile the LESS files of your project via a (post/pre) build event command.
+
+Instructions on usage are shown during installation.
+
+Contains Node package of less.js.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>less less.js lessc build event compiler compile</tags>
+    <references />
+  </metadata>
+</package>

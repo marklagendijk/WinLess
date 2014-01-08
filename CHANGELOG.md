@@ -1,4 +1,7 @@
 ## Changelog
+### 1.8.3
+- Updated less.js to 1.6.0
+- Fixed #102 by changing minify arguments to `--clean-css --clean-option=--selectors-merge-mode:ie8` 
 
 ### 1.8.2
 - Updated less.js to 1.5.0
