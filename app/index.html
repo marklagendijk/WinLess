@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="WinLess">
+	<head>
+		<title>WinLess</title>
+
+		<!-- Styles -->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
+
+		<!-- Utilities -->
+		<script src="bower_components/moment/min/moment-with-langs.min.js"></script>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+		<!-- Angular + Angular modules -->
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+		<script src="bower_components/angular-class/angular-class.min.js"></script>
+		<script src="bower_components/angular-moment/angular-moment.min.js"></script>
+		<script src="bower_components/angular-ui-utils/ui-utils.min.js"></script>
+		<script src="bower_components/ng-grid/ng-grid-2.0.7.min.js"></script>
+
+		<!-- Application scripts -->
+		<script src="js/app.js"></script>
+		<script src="js/controllers/applicationcontroller.js"></script>
+		<script src="js/services/settingsservice.js"></script>
+		<script src="js/services/menuhelperservice.js"></script>
+		<script src="js/directives/nwfolderdropdirective.js"></script>
+	</head>
+	<body>
+		<div ui-view></div>
+	</body>
+</html>

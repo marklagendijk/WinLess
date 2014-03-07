@@ -1,3 +1,0 @@
-Just delete this file.
-
-This is a dummy file to force WinLess.lessc to be a project level package. This is because NuGet currently doesn't support automatically restoring for solution level packages.

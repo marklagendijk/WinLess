@@ -1,0 +1,43 @@
+{
+  "name": "WinLess",
+  "version": "2.0.0",
+  "description": "An awesome Windows GUI for less.js",
+  "main": "index.html",
+  "window": {
+    "title": "WinLess",
+    "icon": "img/icon.png",
+    "toolbar": true,
+    "width": 800,
+    "height": 600,
+    "min_width": 400,
+    "min_height": 300,
+    "show": false
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodewebkit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marklagendijk/WinLess.git"
+  },
+  "keywords": [
+    "less",
+    "compiler",
+    "gui"
+  ],
+  "author": "Mark Lagendijk <mark@lagendijk.info>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marklagendijk/WinLess/issues"
+  },
+  "homepage": "https://github.com/marklagendijk/WinLess",
+  "dependencies": {
+    "less": "^1.7.0",
+    "start-on-windows-boot": "^1.0.0",
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "nodewebkit": "^0.8.5"
+  }
+}
