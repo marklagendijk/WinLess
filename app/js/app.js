@@ -10,11 +10,13 @@ angular.module('WinLess', ['ui.router', 'ui.bootstrap', 'ui.utils', 'angularMome
                 templateUrl: 'views/projects.html',
                 controller: 'ProjectsController'
             })
-            .state('application.errorlog', {
-                templateUrl: 'views/errorlog.html'
+            .state('application.log', {
+                templateUrl: 'views/log.html',
+                controller: 'LogController'
             })
             .state('application.settings', {
-                templateUrl: 'views/settings.html'
+                templateUrl: 'views/settings.html',
+                controller: 'SettingsController'
             })
             .state('application.about', {
                 templateUrl: 'views/about.html'

@@ -7,13 +7,19 @@ angular.module('WinLess')
              * All the settings with their default values.
              */
             values: {
-                compileDefaults: {
-                    minify: true
+                general: {
+                    startWithWindows: true,
+                    startMinified: true
                 },
-                compileOnSave: true,
-                showSuccessMessages: true,
-                startMinified: true,
-                startWithWindows: true
+                compiler: {
+                    compileOnSave: true,
+                    showSuccessMessages: true
+                },
+                compileDefaults: {
+                    minify: true,
+                    strictMath: true,
+                    strictUnits: true
+                }
             },
             /**
              * Loads the setting values from storage.
@@ -30,7 +36,7 @@ angular.module('WinLess')
              * Saves the settings values to storage
              */
             save: function(){
-                if(settings.values.startWithWindows){
+                if(settings.values.general.startWithWindows){
                     startOnBoot.enableAutoStart('WinLess', process.execPath);
                 }
                 else{

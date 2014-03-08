@@ -33,7 +33,7 @@ angular.module('WinLess')
          */
         function initWindow(){
             // Show the window, if WinLess should not start minified.
-            if(!settings.values.startMinified){
+            if(!settings.values.general.startMinified){
                 win.show();
             }
             // Minimize to tray

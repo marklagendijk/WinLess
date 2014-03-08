@@ -1,1 +1,74 @@
-Settings be here.
+<form class="form-horizontal" role="form">
+	<fieldset>
+		<legend>General</legend>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="settings.values.general.startWithWindows"> Start with Windows
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="settings.values.general.startMinified"> Start minimized
+					</label>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Compiler</legend>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="settings.values.compiler.compileOnSave"> Automatically compile files when saved
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="settings.values.compiler.showSuccessMessages"> Show message on successful compile
+					</label>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>Compile defaults</legend>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="settings.values.compileDefaults.minify"> Minify
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="settings.values.compileDefaults.strictMath"> Strict Math
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="settings.values.compileDefaults.strictUnits"> Strict Units
+					</label>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</form>
