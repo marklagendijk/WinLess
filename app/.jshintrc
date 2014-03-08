@@ -1,0 +1,25 @@
+{
+    "es5": true,
+    "bitwise": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "immed": true,
+    "newcap": true,
+    "noarg": true,
+    "noempty": true,
+    "nonew": true,
+    "regexp": true,
+    "undef": true,
+    "trailing": true,
+    "quotmark": "single",
+    "indent": 4,
+    "browser": true,
+    "jquery": true,
+    "globals": {
+        "require": false,
+        "angular": false,
+        "_": false,
+        "tray": false
+    }
+}

@@ -1,17 +1,12 @@
 angular.module('WinLess')
-    .controller('ApplicationController', function($scope, $state, $stateParams, settings, menuHelper){
+    .controller('ApplicationController', function($scope, $state, $stateParams, settings){
         $scope.$state = $state;
         $scope.$stateParams = $stateParams;
-
-        $scope.logDirs = function(event){
-            console.log(event.folders);
-        };
 
         var gui = require('nw.gui');
         var win = gui.Window.get();
 
         initTray();
-        initMenu();
         initWindow();
 
 
@@ -20,7 +15,7 @@ angular.module('WinLess')
          */
         function initTray(){
             // Create the tray item.
-            var tray = new gui.Tray({ icon: 'img/icon.png' });
+            tray = new gui.Tray({ title: 'WinLess', icon: 'img/icon.png' });
 
             // Restore from tray when clicked.
             tray.on('click', restoreFromTray);
@@ -31,36 +26,6 @@ angular.module('WinLess')
             trayMenu.append(new gui.MenuItem({ label: 'Compile' })); // ToDo
             trayMenu.append(new gui.MenuItem({ label: 'Exit', click: exit }));
             tray.menu = trayMenu;
-        }
-
-        /**
-         * Initializes the application menu.
-         */
-        function initMenu(){
-            win.menu = menuHelper.createMenuItems(new gui.Menu({ type: 'menubar' }), [
-                {
-                    label: 'File',
-                    items: [
-                        {
-                            label: 'Settings',
-                            click: function(){
-                                alert('Settings!');
-                            }
-                        }
-                    ]
-                },
-                {
-                    label: 'Help',
-                    items: [
-                        {
-                            label: 'About',
-                            click: function(){
-                                alert('About!');
-                            }
-                        }
-                    ]
-                }
-            ]);
         }
 
         /**

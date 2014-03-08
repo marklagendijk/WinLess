@@ -1,0 +1,34 @@
+<div class="projects">
+	<div class="projects-list" nw-folderdrop="foldersDropped($event)">
+
+		<div class="btn-group">
+			<a class="btn btn-lg btn-primary" title="Add a project" nw-browsefolders="folderSelected($event)">
+				<span class="glyphicon glyphicon-plus-sign"></span>
+			</a>
+			<a class="btn btn-lg btn-primary" title="Edit selected project">
+				<span class="glyphicon glyphicon-edit"></span>
+			</a>
+			<a class="btn btn-lg btn-primary" title="Remove selected project">
+				<span class="glyphicon glyphicon-minus-sign"></span>
+			</a>
+		</div>
+
+
+		<div class="drop-folder" ng-show="!projects.length">
+			Drop a project folder here to get started.
+		</div>
+		<ul>
+			<li ng-repeat="project in projects">
+				{{ project.name }}
+			</li>
+		</ul>
+	</div>
+	<div class="project-file-options">
+		Options be here.<br />
+	</div>
+	<div class="project-file-list">
+		Files be here.
+	</div>
+</div>
+
+

@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs">
+	<li ng-class="{ active: $state.includes('application.projects') }">
+		<a ui-sref="application.projects">Projects</a>
+	</li>
+	<li ng-class="{ active: $state.includes('application.errorlog') }">
+		<a ui-sref="application.errorlog">Error Log</a>
+	</li>
+	<li ng-class="{ active: $state.includes('application.settings') }">
+		<a ui-sref="application.settings">Settings</a>
+	</li>
+	<li ng-class="{ active: $state.includes('application.about') }">
+		<a ui-sref="application.about">About</a>
+	</li>
+</ul>
+<div class="tab-content">
+	<div class="tab-pane active" ui-view></div>
+</div>

@@ -1,0 +1,65 @@
+@import (reference) "bootstrap/bootstrap.less";
+
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+
+.container {
+	padding: 0;
+	width: 100%;
+	max-width: none;
+}
+
+.row {
+	margin: 0;
+}
+
+a {
+	cursor: pointer;
+}
+
+.nav-tabs {
+	margin: 7px 7px 0 7px;
+	li a {
+		padding: 5px 7px;
+		font-size: 12px;
+	}
+}
+
+.tab-content {
+	margin: 0 7px 7px 7px;
+	padding: 10px;
+	height: calc(~"100% - 43px");
+	border: 1px solid #ddd;
+	border-top: none;
+
+	.tab-pane{
+		height: 100%;
+	}
+}
+
+.projects {
+	height: 100%;
+	.clearfix;
+
+	> div {
+		height: 100%;
+	}
+
+	.projects-list {
+		float: left;
+		width: 200px;
+	}
+	.project-file-list {
+	}
+	.project-file-options {
+		float: right;
+		margin: -11px -11px -11px 0;
+		padding: 10px;
+		width: 200px;
+		height: calc(~"100% + 22px");
+		background-color: @brand-primary;
+		color: #FFF;
+	}
+}

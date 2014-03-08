@@ -24,11 +24,13 @@ angular.module('WinLess')
                         }
                     });
 
-                    scope.$eval(attrs.nwFolderdrop, {
-                        $event: {
-                            folders: folders,
-                            originalEvent: event
-                        }
+                    scope.$apply(function(){
+                        scope.$eval(attrs.nwFolderdrop, {
+                            $event: {
+                                value: folders,
+                                originalEvent: event
+                            }
+                        });
                     });
 
                     event.preventDefault();

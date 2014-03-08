@@ -1,5 +1,5 @@
 angular.module('WinLess')
-    .factory('settings', function(){
+    .factory('settings', function(storage){
         var startOnBoot = require('start-on-windows-boot');
 
         var settings = {
@@ -16,18 +16,18 @@ angular.module('WinLess')
                 startWithWindows: true
             },
             /**
-             * Loads the setting values from localStorage.
+             * Loads the setting values from storage.
              */
             load: function(){
                 if(localStorage.settings){
-                    _.extend(settings.values, JSON.parse(localStorage.settings));
+                    _.extend(settings.values, storage.get('settings'));
                 }
                 else{
                     settings.save();
                 }
             },
             /**
-             * Saves the settings values to localStorage
+             * Saves the settings values to storage
              */
             save: function(){
                 if(settings.values.startWithWindows){
@@ -37,7 +37,7 @@ angular.module('WinLess')
                     startOnBoot.disableAutoStart('WinLess');
                 }
 
-                localStorage.settings = JSON.stringify(settings.values);
+                storage.put('settings', settings.values);
             }
         };
         settings.load();
