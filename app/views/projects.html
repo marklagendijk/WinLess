@@ -21,6 +21,13 @@
 			</li>
 		</ul>
 	</div>
+	<div class="project-file-list">
+		<ul class="list-group">
+			<li class="list-group-item" ng-click="selected.file = file" ng-repeat="file in selected.project.files">
+				{{ file.path }}
+			</li>
+		</ul>
+	</div>
 	<div class="project-file-options">
 		<form class="form-horizontal" role="form" ng-show="selected.file">
 			<div class="checkbox">
@@ -40,13 +47,6 @@
 				</label>
 			</div>
 		</form>
-	</div>
-	<div class="project-file-list">
-		<ul class="list-group">
-			<li class="list-group-item" ng-repeat="file in selected.project.files">
-				<a ng-click="selected.file = file">{{ file.name }}</a>
-			</li>
-		</ul>
 	</div>
 </div>
 

@@ -1,26 +1,36 @@
-<form class="form-horizontal" role="form" ng-submit="modal.close(project)">
+<form class="project-modal form-horizontal" role="form" ng-submit="modal.close(project)">
 	<div class="modal-header">
 		<h3>
 			Project
-			<input type="text" ng-model="project.name" style="border: none;" /><br />
-			<small>Select the <abbr title="You don't have to select files which are imported by a main file. These imported files are watched automagically.">main</abbr> LESS files you want to watch.</small>
+			<input class="input-name" type="text" ng-model="project.name" /><br />
+			<small>Select the <abbr
+				title="You don't have to select files which are imported by a main file. These imported files are watched automagically.">main</abbr>
+				LESS files you want to watch.
+			</small>
 		</h3>
 	</div>
 	<div class="modal-body">
-		<label>
-			<input type="checkbox" ng-model="availableFilePaths.showIgnored" />
-			Show <abbr title="You can edit the ignore patterns in the 'Settings' tab.">ignored</abbr> files ({{ availableFilePaths.ignored.length }})
-		</label>
+		<div class="filters clearfix">
+			<input type="text" ng-model="availableFiles.query" placeholder="Filter" />
 
+			<label class="pull-right">
+				<input type="checkbox" ng-model="availableFiles.showIgnored" />
+				Show <abbr title="You can edit the ignore patterns in the 'Settings' tab.">ignored</abbr> files ({{
+				availableFiles.ignored.length }})
+			</label>
+		</div>
 		<ul class="list-group">
 			<li class="list-group-item"
-				ng-repeat="filePath in availableFilePaths.showIgnored ? availableFilePaths.all : availableFilePaths.filtered">
-				{{ filePath }}
+				ng-repeat="file in availableFiles.showIgnored ? availableFiles.all : availableFiles.filtered | filter:availableFiles.query">
+				<label>
+					<input type="checkbox" ng-model="file.selected" />
+					{{ file.path }}
+				</label>
 			</li>
 		</ul>
 	</div>
 	<div class="modal-footer">
-		<button class="btn btn-default" ng-click="modal.dismiss('cancel')">Cancel</button>
-		<button class="btn btn-primary" ng-click="modal.close(project)">Save</button>
+		<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+		<button class="btn btn-primary" ng-click="save()">Save</button>
 	</div>
 </form>

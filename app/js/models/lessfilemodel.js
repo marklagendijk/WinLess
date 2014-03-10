@@ -1,11 +1,9 @@
 angular.module('WinLess')
-    .factory('LessFile', function(Class){
+    .factory('LessFile', function(Class, settings){
         return Class.extend({
             init: function(params){
-                _.extend(this, params);
-                if(!this.name){
-                    this.name = _.last(this.path.split('\\'));
-                }
+                this.compileOptions = _.cloneDeep(settings.values.compileDefaults);
+                this.path = params.path;
             }
         });
     });

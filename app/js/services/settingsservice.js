@@ -1,7 +1,5 @@
 angular.module('WinLess')
-    .factory('settings', function(storage){
-        var startOnBoot = require('start-on-windows-boot');
-
+    .factory('settings', function(startOnBoot, storage){
         var settings = {
             /**
              * All the settings with their default values.

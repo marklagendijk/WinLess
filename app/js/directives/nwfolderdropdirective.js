@@ -1,7 +1,5 @@
 angular.module('WinLess')
-    .directive('nwFolderdrop', function(){
-        var fs = require('fs');
-
+    .directive('nwFolderdrop', function(fs){
         window.ondragover = cancelEvent;
         window.ondrop = cancelEvent;
 

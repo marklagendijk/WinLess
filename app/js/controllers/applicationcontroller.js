@@ -1,10 +1,7 @@
 angular.module('WinLess')
-    .controller('ApplicationController', function($scope, $state, $stateParams, settings){
+    .controller('ApplicationController', function($scope, $state, $stateParams, gui, win, settings){
         $scope.$state = $state;
         $scope.$stateParams = $stateParams;
-
-        var gui = require('nw.gui');
-        var win = gui.Window.get();
 
         initTray();
         initWindow();
@@ -15,7 +12,7 @@ angular.module('WinLess')
          */
         function initTray(){
             // Create the tray item.
-            tray = new gui.Tray({ title: 'WinLess', icon: 'img/icon.png' });
+            var tray = window.tray = new gui.Tray({ title: 'WinLess', icon: 'img/icon.png' });
 
             // Restore from tray when clicked.
             tray.on('click', restoreFromTray);

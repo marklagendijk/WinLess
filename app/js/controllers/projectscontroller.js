@@ -10,10 +10,11 @@ angular.module('WinLess')
         $scope.folderSelected = folderSelected;
         $scope.editProject = editProject;
         $scope.removeProject = removeProject;
+        $scope.$watchCollection('projects', selectProject);
+        $scope.$watch('selected.project', selectFile);
 
 
-        function foldersDropped(event)
-        {
+        function foldersDropped(event){
             createOrEditProject(event.value[0]);
         }
 
@@ -35,6 +36,7 @@ angular.module('WinLess')
             if(path){
                 $modal.open({
                     templateUrl: 'views/projectmodal.html',
+                    windowClass: 'project-modal',
                     controller: 'ProjectModalController',
                     resolve: {
                         project: function(){
@@ -56,6 +58,7 @@ angular.module('WinLess')
             if(project){
                 $modal.open({
                     templateUrl: 'views/projectmodal.html',
+                    windowClass: 'project-modal',
                     controller: 'ProjectModalController',
                     resolve: {
                         project: function(){
@@ -74,5 +77,20 @@ angular.module('WinLess')
             _.remove(projects, project);
             projects.save();
             $scope.selected.project = null;
+        }
+
+        function selectProject(projects){
+            if(!$scope.selected.project){
+                $scope.selected.project = projects[0];
+            }
+        }
+
+        function selectFile(project){
+            if(project){
+                $scope.selected.file = project.files[0];
+            }
+            else{
+                $scope.selected.file = null;
+            }
         }
     });
