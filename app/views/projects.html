@@ -1,33 +1,52 @@
 <div class="projects">
 	<div class="projects-list" nw-folderdrop="foldersDropped($event)">
-
 		<div class="btn-group">
-			<a class="btn btn-lg btn-primary" title="Add a project" nw-browsefolders="folderSelected($event)">
+			<a class="btn btn-lg btn-primary" title="Create a new project" nw-browsefolders="folderSelected($event)">
 				<span class="glyphicon glyphicon-plus-sign"></span>
 			</a>
-			<a class="btn btn-lg btn-primary" title="Edit selected project">
+			<a class="btn btn-lg btn-primary" title="Edit selected project" ng-click="editProject(selected.project)">
 				<span class="glyphicon glyphicon-edit"></span>
 			</a>
-			<a class="btn btn-lg btn-primary" title="Remove selected project">
+			<a class="btn btn-lg btn-primary" title="Remove selected project" ng-click="removeProject(selected.project)">
 				<span class="glyphicon glyphicon-minus-sign"></span>
 			</a>
 		</div>
-
-
 		<div class="drop-folder" ng-show="!projects.length">
 			Drop a project folder here to get started.
 		</div>
-		<ul>
-			<li ng-repeat="project in projects">
+		<ul class="list-group">
+			<li class="list-group-item" ng-class="{ active: project === selected.project }"
+				ng-click="selected.project = project" ng-repeat="project in projects">
 				{{ project.name }}
 			</li>
 		</ul>
 	</div>
 	<div class="project-file-options">
-		Options be here.<br />
+		<form class="form-horizontal" role="form" ng-show="selected.file">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" ng-model="selected.file.compileOptions.minify"> Minify
+				</label>
+
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" ng-model="selected.file.compileOptions.strictMath"> Strict Math
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" ng-model="selected.file.compileOptions.strictUnits"> Strict Units
+				</label>
+			</div>
+		</form>
 	</div>
 	<div class="project-file-list">
-		Files be here.
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="file in selected.project.files">
+				<a ng-click="selected.file = file">{{ file.name }}</a>
+			</li>
+		</ul>
 	</div>
 </div>
 

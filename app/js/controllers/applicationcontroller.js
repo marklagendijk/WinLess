@@ -38,6 +38,30 @@ angular.module('WinLess')
             }
             // Minimize to tray
             win.on('minimize', minimizeToTray);
+
+            $(window).keydown(function(event){
+                var keycodes = {
+                    F5: 116,
+                    F12: 123
+                };
+
+                switch(event.which){
+                // Reload the application on F5
+                case keycodes.F5:
+                    window.location.reload();
+                    break;
+
+                // Toggle DevTools on F12
+                case keycodes.F12:
+                    if(win.isDevToolsOpen()){
+                        win.closeDevTools();
+                    }
+                    else{
+                        win.showDevTools();
+                    }
+                    break;
+                }
+            });
         }
 
         function restoreFromTray(){

@@ -1,19 +1,78 @@
 angular.module('WinLess')
-    .controller('ProjectsController', function($scope, projects){
+    .controller('ProjectsController', function($scope, $modal, projects, Project){
         $scope.projects = projects;
-
-        $scope.foldersDropped = function(event){
-            event.value.forEach(createProject);
+        $scope.selected = {
+            project: null,
+            file: null
         };
 
-        $scope.folderSelected = function(event){
-            createProject(event.value);
-        };
+        $scope.foldersDropped = foldersDropped;
+        $scope.folderSelected = folderSelected;
+        $scope.editProject = editProject;
+        $scope.removeProject = removeProject;
 
-        function createProject(folderPath){
-            projects.push({
-                name: _.last(folderPath.split('\\')),
-                path: folderPath
-            });
+
+        function foldersDropped(event)
+        {
+            createOrEditProject(event.value[0]);
+        }
+
+        function folderSelected(event){
+            createOrEditProject(event.value);
+        }
+
+        function createOrEditProject(path){
+            var existingProject = _.find(projects, { path: path });
+            if(existingProject){
+                editProject(existingProject);
+            }
+            else{
+                createProject(path);
+            }
+        }
+
+        function createProject(path){
+            if(path){
+                $modal.open({
+                    templateUrl: 'views/projectmodal.html',
+                    controller: 'ProjectModalController',
+                    resolve: {
+                        project: function(){
+                            return new Project({
+                                path: path
+                            });
+                        }
+                    }
+                }).result
+                    .then(function(project){
+                        projects.push(project);
+                        projects.save();
+                        $scope.selected.project = project;
+                    });
+            }
+        }
+
+        function editProject(project){
+            if(project){
+                $modal.open({
+                    templateUrl: 'views/projectmodal.html',
+                    controller: 'ProjectModalController',
+                    resolve: {
+                        project: function(){
+                            return new Project(_.cloneDeep(project));
+                        }
+                    }
+                }).result
+                    .then(function(editedProject){
+                        _.extend(project, editedProject);
+                        projects.save();
+                    });
+            }
+        }
+
+        function removeProject(project){
+            _.remove(projects, project);
+            projects.save();
+            $scope.selected.project = null;
         }
     });

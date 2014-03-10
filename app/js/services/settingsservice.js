@@ -11,6 +11,14 @@ angular.module('WinLess')
                     startWithWindows: true,
                     startMinified: true
                 },
+                project: {
+                    ignorePatterns: [
+                        'bower_components\\',
+                        'node_modules\\',
+                        'imports\\',
+                        '\\_'
+                    ]
+                },
                 compiler: {
                     compileOnSave: true,
                     showSuccessMessages: true

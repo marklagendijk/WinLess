@@ -6,12 +6,12 @@
   "window": {
     "title": "WinLess",
     "icon": "img/icon.png",
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "width": 800,
-    "height": 500,
+    "height": 550,
     "min_width": 800,
-    "min_height": 500,
+    "min_height": 550,
     "show": false
   },
   "scripts": {
@@ -37,7 +37,8 @@
     "less": "^1.7.0",
     "start-on-windows-boot": "^1.0.0",
     "lodash": "^2.4.1",
-    "less-imports": "^1.1.0"
+    "less-imports": "^1.1.0",
+    "glob": "^3.2.9"
   },
   "devDependencies": {
     "nodewebkit": "^0.8.5"

@@ -6,14 +6,18 @@ angular.module('WinLess')
                 element.append(input);
 
                 input.change(function(event){
-                    scope.$apply(function(){
-                        scope.$eval(attrs.nwBrowsefolders, {
-                            $event: {
-                                value: input.val(),
-                                originalEvent: event
-                            }
+                    var path = input.val();
+                    if(path){
+                        scope.$apply(function(){
+                            scope.$eval(attrs.nwBrowsefolders, {
+                                $event: {
+                                    value: path,
+                                    originalEvent: event
+                                }
+                            });
+                            input.val('');
                         });
-                    });
+                    }
                 });
 
                 input.click(function(event){

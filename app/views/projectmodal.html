@@ -1,0 +1,26 @@
+<form class="form-horizontal" role="form" ng-submit="modal.close(project)">
+	<div class="modal-header">
+		<h3>
+			Project
+			<input type="text" ng-model="project.name" style="border: none;" /><br />
+			<small>Select the <abbr title="You don't have to select files which are imported by a main file. These imported files are watched automagically.">main</abbr> LESS files you want to watch.</small>
+		</h3>
+	</div>
+	<div class="modal-body">
+		<label>
+			<input type="checkbox" ng-model="availableFilePaths.showIgnored" />
+			Show <abbr title="You can edit the ignore patterns in the 'Settings' tab.">ignored</abbr> files ({{ availableFilePaths.ignored.length }})
+		</label>
+
+		<ul class="list-group">
+			<li class="list-group-item"
+				ng-repeat="filePath in availableFilePaths.showIgnored ? availableFilePaths.all : availableFilePaths.filtered">
+				{{ filePath }}
+			</li>
+		</ul>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" ng-click="modal.dismiss('cancel')">Cancel</button>
+		<button class="btn btn-primary" ng-click="modal.close(project)">Save</button>
+	</div>
+</form>
