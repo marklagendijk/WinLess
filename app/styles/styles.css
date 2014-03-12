@@ -101,6 +101,19 @@ a {
 .tab-content .tab-pane {
   height: 100%;
 }
+.list-group li {
+  border-color: #cddbef;
+  cursor: pointer;
+}
+.list-group li.active {
+  font-weight: bold;
+  color: #2e558f;
+  border-color: #2e558f;
+  margin-bottom: 0;
+}
+.list-group li.active + li {
+  border-top-width: 0;
+}
 .projects {
   height: 100%;
 }
@@ -128,6 +141,12 @@ a {
 .projects .projects-list {
   width: 200px;
   margin-right: 15px;
+}
+.projects .projects-list .btn-group {
+  width: 204px;
+}
+.projects .projects-list .btn-group .btn {
+  width: 33%;
 }
 .projects .project-file-list {
   width: calc(100% - 427px);

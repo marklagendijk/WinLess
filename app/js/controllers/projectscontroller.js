@@ -1,5 +1,5 @@
 angular.module('WinLess')
-    .controller('ProjectsController', function($scope, $modal, projects, Project){
+    .controller('ProjectsController', function($scope, $modal, openExternal, projects, Project){
         $scope.projects = projects;
         $scope.selected = {
             project: null,
@@ -9,6 +9,7 @@ angular.module('WinLess')
         $scope.foldersDropped = foldersDropped;
         $scope.folderSelected = folderSelected;
         $scope.editProject = editProject;
+        $scope.openProjectFolder = openProjectFolder;
         $scope.removeProject = removeProject;
         $scope.$watchCollection('projects', selectProject);
         $scope.$watch('selected.project', selectFile);
@@ -71,6 +72,10 @@ angular.module('WinLess')
                         projects.save();
                     });
             }
+        }
+
+        function openProjectFolder(project){
+            openExternal.folder(project.path);
         }
 
         function removeProject(project){

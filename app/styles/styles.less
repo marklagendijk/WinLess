@@ -39,6 +39,24 @@ a {
 	}
 }
 
+.list-group {
+	li {
+		border-color: @brand-primary-light;
+		cursor: pointer;
+
+		&.active {
+			font-weight: bold;
+			color: @brand-primary;
+			border-color: @brand-primary;
+			margin-bottom: 0;
+
+			+ li {
+				border-top-width: 0;
+			}
+		}
+	}
+}
+
 .projects {
 	height: 100%;
 	.clearfix;
@@ -52,6 +70,14 @@ a {
 	.projects-list {
 		width: 200px;
 		margin-right: 15px;
+
+		.btn-group{
+			width: 204px;
+
+			.btn{
+				width: 33%;
+			}
+		}
 	}
 	.project-file-list {
 		width: calc(~"100% - 427px");

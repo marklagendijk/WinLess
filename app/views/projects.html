@@ -7,23 +7,42 @@
 			<a class="btn btn-lg btn-primary" title="Edit selected project" ng-click="editProject(selected.project)">
 				<span class="glyphicon glyphicon-edit"></span>
 			</a>
-			<a class="btn btn-lg btn-primary" title="Remove selected project" ng-click="removeProject(selected.project)">
-				<span class="glyphicon glyphicon-minus-sign"></span>
+			<a class="btn btn-lg btn-primary dropdown-toggle" data-toggle="dropdown">
+				...
 			</a>
+			<ul class="dropdown-menu dropdown-menu-right" role="menu">
+				<li>
+					<a ng-click="openProjectFolder(selected.project)">
+						Open project folder
+					</a>
+				</li>
+				<li>
+					<a ng-click="selected.project.compile()">
+						Compile project files
+					</a>
+				</li>
+				<li>
+					<a ng-click="removeProject(selected.project)">
+						Remove selected project
+					</a>
+				</li>
+			</ul>
 		</div>
 		<div class="drop-folder" ng-show="!projects.length">
 			Drop a project folder here to get started.
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item" ng-class="{ active: project === selected.project }"
-				ng-click="selected.project = project" ng-repeat="project in projects">
+				ng-click="selected.project = project" ng-repeat="project in projects track by project.path">
 				{{ project.name }}
+				<span ng-show="project === selected.project" class="glyphicon glyphicon-play pull-right"></span>
 			</li>
 		</ul>
 	</div>
 	<div class="project-file-list">
 		<ul class="list-group">
-			<li class="list-group-item" ng-click="selected.file = file" ng-repeat="file in selected.project.files">
+			<li class="list-group-item" ng-class="{ active: file === selected.file }"
+				ng-click="selected.file = file" ng-repeat="file in selected.project.files track by file.path">
 				{{ file.path }}
 			</li>
 		</ul>

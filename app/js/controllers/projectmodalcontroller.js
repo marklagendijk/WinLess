@@ -18,7 +18,7 @@ angular.module('WinLess')
                 .map(function(filePath){
                     return {
                         path: filePath,
-                        selected: false
+                        selected: _.find(project.files, { path: filePath }) !== undefined
                     };
                 });
         }
@@ -40,6 +40,8 @@ angular.module('WinLess')
         }
 
         function save(){
+            project.files.splice(0, project.files.length);
+
             availableFiles
                 .filter(function(file){
                     return file.selected;

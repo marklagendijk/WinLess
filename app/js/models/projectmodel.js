@@ -2,13 +2,14 @@ angular.module('WinLess')
     .factory('Project', function(glob, path, Class){
         return Class.extend({
             init: function(params){
-                this.name = params.name;
                 this.path = params.path;
-                this.files = [];
-
-                if(!this.name){
-                    this.name = _.last(this.path.split('\\'));
-                }
+                this.name = params.name || _.last(this.path.split('\\'));
+                this.files = params.files || [];
+            },
+            compile: function(){
+                this.files.forEach(function(file){
+                    file.compile();
+                });
             },
             getAvailableFilePaths: function(){
                 var self = this;

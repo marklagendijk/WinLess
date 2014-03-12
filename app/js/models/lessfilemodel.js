@@ -4,6 +4,9 @@ angular.module('WinLess')
             init: function(params){
                 this.compileOptions = _.cloneDeep(settings.values.compileDefaults);
                 this.path = params.path;
+            },
+            compile: function(){
+                console.log('Fake compiled ' + this.path);
             }
         });
     });
