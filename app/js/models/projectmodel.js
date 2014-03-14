@@ -1,5 +1,5 @@
 angular.module('WinLess')
-    .factory('Project', function(glob, path, Class){
+    .factory('Project', function(Class){
         return Class.extend({
             init: function(params){
                 this.path = params.path;
@@ -10,13 +10,6 @@ angular.module('WinLess')
                 this.files.forEach(function(file){
                     file.compile();
                 });
-            },
-            getAvailableFilePaths: function(){
-                var self = this;
-                return glob.sync(this.path + '/**/*.less')
-                    .map(function(filePath){
-                        return path.relative(self.path, filePath);
-                    });
             }
         });
     });

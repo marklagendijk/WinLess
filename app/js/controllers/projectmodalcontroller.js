@@ -1,5 +1,5 @@
 angular.module('WinLess')
-    .controller('ProjectModalController', function($scope, $modalInstance, project, settings, LessFile){
+    .controller('ProjectModalController', function($scope, $modalInstance, glob, path, project, settings, LessFile){
         $scope.project = project;
         $scope.save = save;
         $scope.cancel = cancel;
@@ -14,10 +14,11 @@ angular.module('WinLess')
 
 
         function getAvailableFiles(project){
-            return project.getAvailableFilePaths()
+            return glob.sync(project.path + '/**/*.less')
                 .map(function(filePath){
                     return {
-                        path: filePath,
+                        path: path.resolve(filePath),
+                        relativePath: path.relative(project.path, filePath),
                         selected: _.find(project.files, { path: filePath }) !== undefined
                     };
                 });

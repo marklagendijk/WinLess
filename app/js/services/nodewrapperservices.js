@@ -14,8 +14,14 @@ angular.module('WinLess')
     .factory('path', function(){
         return require('path');
     })
-   .factory('glob', function(){
+    .factory('glob', function(){
         return require('glob');
+    })
+    .factory('chokidar', function(){
+        return require('chokidar');
+    })
+    .factory('lessImports', function(){
+        return require('less-imports');
     })
     .factory('startOnBoot', function(){
         return require('start-on-windows-boot');

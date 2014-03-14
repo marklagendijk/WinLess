@@ -24,7 +24,7 @@
 				ng-repeat="file in availableFiles.showIgnored ? availableFiles.all : availableFiles.filtered | filter:availableFiles.query">
 				<label>
 					<input type="checkbox" ng-model="file.selected" />
-					{{ file.path }}
+					{{ file.relativePath }}
 				</label>
 			</li>
 		</ul>

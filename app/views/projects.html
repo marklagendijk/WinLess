@@ -43,7 +43,7 @@
 		<ul class="list-group">
 			<li class="list-group-item" ng-class="{ active: file === selected.file }"
 				ng-click="selected.file = file" ng-repeat="file in selected.project.files track by file.path">
-				{{ file.path }}
+				{{ file.relativePath }}
 			</li>
 		</ul>
 	</div>

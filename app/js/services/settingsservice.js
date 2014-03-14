@@ -19,6 +19,7 @@ angular.module('WinLess')
                 },
                 compiler: {
                     compileOnSave: true,
+                    useMinExtension: true,
                     showSuccessMessages: true
                 },
                 compileDefaults: {
@@ -32,7 +33,7 @@ angular.module('WinLess')
              */
             load: function(){
                 if(localStorage.settings){
-                    _.extend(settings.values, storage.get('settings'));
+                    _.merge(settings.values, storage.get('settings'));
                 }
                 else{
                     settings.save();
