@@ -20,9 +20,9 @@
 			</label>
 		</div>
 		<ul class="list-group">
-			<li class="list-group-item"
+			<li class="list-group-item" ng-click="file.selected = !file.selected"
 				ng-repeat="file in availableFiles.showIgnored ? availableFiles.all : availableFiles.filtered | filter:availableFiles.query">
-				<label>
+				<label ng-click="$event.stopPropagation()">
 					<input type="checkbox" ng-model="file.selected" />
 					{{ file.relativePath }}
 				</label>

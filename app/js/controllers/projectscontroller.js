@@ -1,5 +1,5 @@
 angular.module('WinLess')
-    .controller('ProjectsController', function($scope, $modal, openExternal, projects, Project){
+    .controller('ProjectsController', function($scope, $modal, open, projects, Project){
         $scope.projects = projects;
         $scope.selected = {
             project: null,
@@ -75,7 +75,7 @@ angular.module('WinLess')
         }
 
         function openProjectFolder(project){
-            openExternal.folder(project.path);
+            open(project.path);
         }
 
         function removeProject(project){

@@ -20,6 +20,9 @@ angular.module('WinLess')
     .factory('chokidar', function(){
         return require('chokidar');
     })
+    .factory('open', function(){
+        return require('open');
+    })
     .factory('lessImports', function(){
         return require('less-imports');
     })
