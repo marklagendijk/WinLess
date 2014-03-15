@@ -36,8 +36,18 @@ angular.module('WinLess')
         function getLesscArguments(file){
             var args = '--no-color ';
             if(file.compileOptions.minify){
-                // Use the 'clean-css' option for minification, don't break compatability
-                args += '--clean-css --clean-option=--compatibility:ie7 ';
+                // clean-css isn't compatible with source maps, so use compress instead
+                if(file.compileOptions.sourceMap){
+                    args += '--compress ';
+                }
+                // Use the clean-css for minification
+                else{
+                    args += '--clean-css --clean-option=--compatibility:ie7 ';
+                }
+            }
+            if(file.compileOptions.sourceMap){
+                args += '--source-map ';
+
             }
             if(file.compileOptions.strictMath){
                 args += '--strict-math=on ';

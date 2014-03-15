@@ -26,6 +26,7 @@ angular.module('WinLess')
                 },
                 compileDefaults: {
                     minify: true,
+                    sourceMap: true,
                     strictMath: false,
                     strictUnits: false
                 }

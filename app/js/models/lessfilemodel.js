@@ -17,12 +17,10 @@ angular.module('WinLess')
             },
             compile: function(){
                 var self = this;
-                // ToDo: fix throttling
-                throttle(function(){
-                    lessCompiler.compile(self);
-                    // Update the imports
-                    self.watch();
-                }, 50);
+
+                lessCompiler.compile(self);
+                // Update the imports
+                self.watch();
             }
         });
 
