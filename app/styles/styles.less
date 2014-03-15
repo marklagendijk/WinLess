@@ -35,11 +35,15 @@ a {
 	border-top: none;
 
 	.tab-pane {
+		position: relative;
 		height: 100%;
 	}
 }
 
 .list-group {
+	height: 100%;
+	overflow-y: auto;
+
 	li {
 		border-color: @brand-primary-light;
 		cursor: pointer;
@@ -71,16 +75,16 @@ a {
 		width: 200px;
 		margin-right: 15px;
 
-		.btn-group{
+		.btn-group {
 			width: 204px;
 
-			.btn{
+			.btn {
 				width: 33%;
 			}
 		}
 	}
 	.project-file-list {
-		width: calc(~"100% - 427px");
+		width: calc(~"100% - 438px");
 		margin-right: 15px;
 	}
 	.project-file-options {
@@ -96,7 +100,7 @@ a {
 .project-modal {
 	overflow: hidden;
 
-	.modal-dialog{
+	.modal-dialog {
 		height: 100%;
 
 		.modal-content {
@@ -104,17 +108,49 @@ a {
 			overflow-y: auto;
 
 			.form-horizontal {
-				input[type=text]{
+				input[type=text] {
 					padding: 2px 5px;
 					border: 1px solid @gray-lighter;
 				}
 
-				label{
+				label {
 					font-weight: normal;
 				}
 
-				.filters{
+				.filters {
 					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+}
+
+.log {
+	height: 100%;
+
+	.filters {
+		input[type=text] {
+			padding: 2px 5px;
+			border: 1px solid @gray-lighter;
+		}
+		margin-bottom: 10px;
+	}
+
+	.list-group {
+		height: calc(~"100% - 36px");
+		li {
+			&.success{
+				color: @state-success-text;
+				border-color: @state-success-border;
+				background-color: @state-success-bg;
+			}
+			&.error{
+				color: @state-danger-text;
+				border-color: @state-danger-border;
+				background-color: @state-danger-bg;
+
+				pre{
+					margin-top: 10px;
 				}
 			}
 		}

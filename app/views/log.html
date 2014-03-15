@@ -1,4 +1,11 @@
-ToDo
-<ul>
-	<li ng-repeat="log in logs">{{ log.message }}</li>
-</ul>
+<div class="log">
+	<div class="filters">
+		<input type="text" ng-model="query" placeholder="Filter" />
+	</div>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="event in compilerLog | filter:query | orderBy:'date':true" ng-class="{ success: !event.isError, error: event.isError }">
+			{{ event.date | date:'HH:mm' }} - {{ event.file.path }}
+			<pre ng-show="event.isError" class="danger">{{ event.error }}</pre>
+		</li>
+	</ul>
+</div>

@@ -20,7 +20,9 @@ angular.module('WinLess')
                 compiler: {
                     compileOnSave: true,
                     useMinExtension: true,
-                    showSuccessMessages: true
+                    showSuccessMessages: true,
+                    useCustomLessc: false,
+                    lesscPath: 'lessc'
                 },
                 compileDefaults: {
                     minify: true,
