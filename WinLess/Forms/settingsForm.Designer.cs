@@ -114,7 +114,7 @@
             this.showSuccessMessagesCheckbox.Name = "showSuccessMessagesCheckbox";
             this.showSuccessMessagesCheckbox.Size = new System.Drawing.Size(200, 17);
             this.showSuccessMessagesCheckbox.TabIndex = 2;
-            this.showSuccessMessagesCheckbox.Text = "Show message on succesful compile";
+            this.showSuccessMessagesCheckbox.Text = "Show message on successful compile";
             this.showSuccessMessagesCheckbox.UseVisualStyleBackColor = true;
             // 
             // compileOnSaveCheckBox
