@@ -22,8 +22,10 @@ namespace WinLess
             startMinimizedCheckBox.Checked = Program.Settings.StartMinified;
             checkForLessUpdatesCheckbox.Checked = Program.Settings.CheckForLessUpdates;
             defaultMinifyCheckBox.Checked = Program.Settings.DefaultMinify;
+            compileOnDirectoryChangeCheckBox.Checked = Program.Settings.CompileOnDirectoryChange;
             compileOnSaveCheckBox.Checked = Program.Settings.CompileOnSave;
             showSuccessMessagesCheckbox.Checked = Program.Settings.ShowSuccessMessages;
+            compileOnDirectoryChangeCheckBox.Enabled = compileOnSaveCheckBox.Checked;
         }
 
         private void saveSettings()
@@ -33,6 +35,7 @@ namespace WinLess
             Program.Settings.CheckForLessUpdates = checkForLessUpdatesCheckbox.Checked;
             Program.Settings.DefaultMinify = defaultMinifyCheckBox.Checked;
             Program.Settings.CompileOnSave = compileOnSaveCheckBox.Checked;
+            Program.Settings.CompileOnDirectoryChange = compileOnDirectoryChangeCheckBox.Checked;
             Program.Settings.ShowSuccessMessages = showSuccessMessagesCheckbox.Checked;
             Program.Settings.SaveSettings();
         }
@@ -46,6 +49,11 @@ namespace WinLess
         {
             saveSettings();
             this.Close();
+        }
+
+        private void compileOnSaveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            compileOnDirectoryChangeCheckBox.Enabled = compileOnSaveCheckBox.Checked;
         }
     }
 }

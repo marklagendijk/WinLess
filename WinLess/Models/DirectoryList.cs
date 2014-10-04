@@ -19,21 +19,21 @@ namespace WinLess.Models
             Directories = new List<Directory>();
         }
 
-        public void Initialize()
+        public void Initialize( CompilerDispatcher dispacher)
         {
             RemoveDeletedDirectories();
             CheckAllFilesForImports();
-            StartWatchers();
+            StartWatchers(dispacher);
         }
 
-        public Directory AddDirectory(string path)
+        public Directory AddDirectory(string path, CompilerDispatcher dispacher)
         {
             Directory directory = GetDirectory(path);
             if (directory == null)
             {
                 directory = new Models.Directory(path);
                 Directories.Add(directory);
-                AddWatcher(directory);
+                AddWatcher(directory, dispacher);
                 Program.Settings.SaveSettings();
                 CheckAllFilesForImports();
             }
@@ -122,15 +122,15 @@ namespace WinLess.Models
             }
         }
         
-        public void StartWatchers()
+        public void StartWatchers( CompilerDispatcher dispacher)
         {
             foreach (Models.Directory directory in Directories)
             {
-                this.AddWatcher(directory);
+                this.AddWatcher(directory, dispacher);
             }
         }
 
-        private void AddWatcher(Models.Directory directory)
+        private void AddWatcher(Models.Directory directory, CompilerDispatcher dispacher)
         {
             try
             {
@@ -140,13 +140,34 @@ namespace WinLess.Models
                     {
                         fileSystemWatchers = new List<FileSystemWatcher>();
                     }
+                    
+                    Action<object, System.IO.FileSystemEventArgs> compileOnChage = delegate(object sender, System.IO.FileSystemEventArgs e)
+                    {
+                        if (Program.Settings.CompileOnSave && IsNewFileChange(e) && IsLessFile(e.FullPath))
+                        {
+                            Models.File file = Program.Settings.DirectoryList.GetFile(e.FullPath);
+                            if (file != null)
+                            {
+                                if (Program.Settings.CompileOnDirectoryChange)
+                                {
+                                    dispacher.CompileSelectedFiles();
+                                }
+                                else
+                                {
+                                    file.Compile();
+                                    previousFileChangedPath = file.FullPath;
+                                    previousFileChangedTime = DateTime.Now;
+                                }
+                            }
+                        }
+                    };
 
                     FileSystemWatcher fileSystemWatcher = new FileSystemWatcher();
                     fileSystemWatcher.Path = directory.FullPath;
                     fileSystemWatcher.IncludeSubdirectories = true;
                     fileSystemWatcher.Filter = "*.*";
                     fileSystemWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.LastAccess | NotifyFilters.FileName | NotifyFilters.Size | NotifyFilters.CreationTime | NotifyFilters.Attributes;
-                    fileSystemWatcher.Changed += FileSystemWatcher_Changed;
+                    fileSystemWatcher.Changed += new FileSystemEventHandler(compileOnChage);
                     fileSystemWatcher.EnableRaisingEvents = true;
 
                     fileSystemWatchers.Add(fileSystemWatcher);
@@ -181,20 +202,7 @@ namespace WinLess.Models
             }
         }
 
-        private void FileSystemWatcher_Changed(object sender, System.IO.FileSystemEventArgs e)
-        {
-
-            if (Program.Settings.CompileOnSave && IsNewFileChange(e) && IsLessFile(e.FullPath))
-            {
-                Models.File file = Program.Settings.DirectoryList.GetFile(e.FullPath);
-                if (file != null)
-                {
-                    file.Compile();
-                    previousFileChangedPath = file.FullPath;
-                    previousFileChangedTime = DateTime.Now;
-                }
-            }
-        }
+       
 
         private bool IsNewFileChange(System.IO.FileSystemEventArgs e)
         {
