@@ -18,6 +18,9 @@
         },
 
         visitMixinDefinition: function (mixinNode, visitArgs) {
+            // mixin definitions do not get eval'd - this means they keep state
+            // so we have to clear that state here so it isn't used if toCSS is called twice
+            mixinNode.frames = [];
             return [];
         },
 
@@ -59,6 +62,9 @@
                     return [];
                 }
                 this.charset = true;
+            }
+            if (directiveNode.rules && directiveNode.rules.rules) {
+                this._mergeRules(directiveNode.rules.rules);
             }
             return directiveNode;
         },
@@ -199,14 +205,36 @@
             }
 
             Object.keys(groups).map(function (k) {
+
+                function toExpression(values) {
+                    return new (tree.Expression)(values.map(function (p) {
+                        return p.value;
+                    }));
+                }
+
+                function toValue(values) {
+                    return new (tree.Value)(values.map(function (p) {
+                        return p;
+                    }));
+                }
+
                 parts = groups[k];
 
                 if (parts.length > 1) {
                     rule = parts[0];
-
-                    rule.value = new (tree.Value)(parts.map(function (p) {
-                        return p.value;
-                    }));
+                    var spacedGroups = [];
+                    var lastSpacedGroup = [];
+                    parts.map(function (p) {
+                    if (p.merge==="+") {
+                        if (lastSpacedGroup.length > 0) {
+                                spacedGroups.push(toExpression(lastSpacedGroup));
+                            }
+                            lastSpacedGroup = [];
+                        }
+                        lastSpacedGroup.push(p);
+                    });
+                    spacedGroups.push(toExpression(lastSpacedGroup));
+                    rule.value = toValue(spacedGroups);
                 }
             });
         }
