@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Models\DirectoryList.cs" />
     <Compile Include="Models\File.cs" />
+    <Compile Include="Models\CompilerDispatcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
@@ -107,7 +108,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>ROBOCOPY "$(ProjectDir)node_modules" "$(TargetDir)node_modules" * /COPYALL /S
+    <PostBuildEvent>ROBOCOPY "$(ProjectDir)node_modules" "$(TargetDir)node_modules" * /COPY:DATSO /S
 EXIT 0</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

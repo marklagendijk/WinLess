@@ -16,6 +16,7 @@ namespace WinLess
             DirectoryList = new DirectoryList();
             DefaultMinify = true;
             CompileOnSave = true;
+            CompileOnDirectoryChange = false;
             ShowSuccessMessages = false;
             StartWithWindows = true;
             StartMinified = false;
@@ -25,6 +26,7 @@ namespace WinLess
         public DirectoryList DirectoryList { get; set; }
         public bool DefaultMinify { get; set; }
         public bool CompileOnSave { get; set; }
+        public bool CompileOnDirectoryChange { get; set; }
         public bool ShowSuccessMessages { get; set; }
         public bool StartMinified { get; set; }
         public bool CheckForLessUpdates { get; set; }

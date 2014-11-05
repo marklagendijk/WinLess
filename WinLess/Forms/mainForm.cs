@@ -13,7 +13,7 @@ using Ookii.Dialogs.Wpf;
 
 namespace WinLess
 {
-    public partial class mainForm : Form
+    public partial class mainForm : Form, CompilerDispatcher
     {
         private static mainForm activeOrInActiveMainForm = null;
         public static mainForm ActiveOrInActiveMainForm
@@ -39,7 +39,7 @@ namespace WinLess
                 activeOrInActiveMainForm = this;
 
                 Program.Settings = Settings.LoadSettings();
-                Program.Settings.DirectoryList.Initialize();
+                Program.Settings.DirectoryList.Initialize(this);
 
                 InitializeComponent();
                 initFilesDataGridViewCheckAllCheckBox();
@@ -87,7 +87,7 @@ namespace WinLess
             {
                 if(System.IO.Directory.Exists(directoryPath))
                 {
-                    Models.Directory directory = Program.Settings.DirectoryList.AddDirectory(directoryPath);
+                    Models.Directory directory = Program.Settings.DirectoryList.AddDirectory(directoryPath, this);
                     
                     foreach (Models.File file in directory.Files)
                     {
@@ -158,7 +158,7 @@ namespace WinLess
                 DirectoryInfo directoryInfo = new DirectoryInfo(fullPath);
                 if (directoryInfo.Exists && !foldersListBox.Items.Contains(directoryInfo.FullName))
                 {
-                    Program.Settings.DirectoryList.AddDirectory(directoryInfo.FullName);
+                    Program.Settings.DirectoryList.AddDirectory(directoryInfo.FullName, this);
                     foldersListBox_DataChanged();
                     SelectDirectory();
                     Program.Settings.SaveSettings();
@@ -344,7 +344,7 @@ namespace WinLess
         {
             if (folderBrowserDialog.ShowDialog() == true)
             {
-                Program.Settings.DirectoryList.AddDirectory(folderBrowserDialog.SelectedPath);
+                Program.Settings.DirectoryList.AddDirectory(folderBrowserDialog.SelectedPath, this);
                 foldersListBox_DataChanged();
                 Program.Settings.SaveSettings();
             }
@@ -513,7 +513,7 @@ namespace WinLess
         /// <summary>
         /// Compiles a list of selected LESS files
         /// </summary>
-        private void CompileSelectedFiles()
+        public void CompileSelectedFiles()
         {
             // Retrieve list of files from data grid
             List<Models.File> files = (List<Models.File>)filesDataGridView.DataSource;
