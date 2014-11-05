@@ -81,7 +81,7 @@ tree.Import.prototype = {
                 var pathValue = path.value;
                 // Add the base path if the import is relative
                 if (pathValue && env.isPathRelative(pathValue)) {
-                    path.value = rootpath + pathValue;
+                    path.value = rootpath +pathValue;
                 }
             }
             path.value = env.normalizePath(path.value);
@@ -92,11 +92,18 @@ tree.Import.prototype = {
     eval: function (env) {
         var ruleset, features = this.features && this.features.eval(env);
 
-        if (this.skip) { return []; }
-
+        if (this.skip) {
+            if (typeof this.skip === "function") {
+                this.skip = this.skip();
+            }
+            if (this.skip) {
+                return []; 
+            }
+        }
+         
         if (this.options.inline) {
             //todo needs to reference css file not import
-            var contents = new(tree.Anonymous)(this.root, 0, {filename: this.importedFilename}, true);
+            var contents = new(tree.Anonymous)(this.root, 0, {filename: this.importedFilename}, true, true);
             return this.features ? new(tree.Media)([contents], this.features.value) : [contents];
         } else if (this.css) {
             var newImport = new(tree.Import)(this.evalPath(env), features, this.options, this.index);
