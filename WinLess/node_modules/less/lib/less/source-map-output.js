@@ -101,11 +101,14 @@
 
         if (this._outputSourceFiles) {
             for(var filename in this._contentsMap) {
-                var source = this._contentsMap[filename];
-                if (this._contentsIgnoredCharsMap[filename]) {
-                    source = source.slice(this._contentsIgnoredCharsMap[filename]);
+                if (this._contentsMap.hasOwnProperty(filename))
+                {
+                    var source = this._contentsMap[filename];
+                    if (this._contentsIgnoredCharsMap[filename]) {
+                        source = source.slice(this._contentsIgnoredCharsMap[filename]);
+                    }
+                    this._sourceMapGenerator.setSourceContent(this.normalizeFilename(filename), source);
                 }
-                this._sourceMapGenerator.setSourceContent(this.normalizeFilename(filename), source);
             }
         }
 
@@ -124,7 +127,7 @@
             if (this._writeSourceMap) {
                 this._writeSourceMap(sourceMapContent);
             } else {
-                sourceMapURL = "data:application/json," + encodeURIComponent(sourceMapContent);
+                sourceMapURL = "data:application/json;base64," + require('./encoder.js').encodeBase64(sourceMapContent);
             }
 
             if (sourceMapURL) {

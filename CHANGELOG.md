@@ -1,4 +1,10 @@
 ## Changelog
+### 1.9.0
+- Updated less.js to 1.7.5.
+- Fixed #138 with help of @magicbruno.
+- Removed broken support for update checking + updating
+- Added support for using globally installed less.
+
 ### 1.8.3
 - Updated less.js to 1.6.0
 - Fixed #102 by changing minify arguments to `--clean-css --clean-option=--selectors-merge-mode:ie8` 

@@ -38,7 +38,7 @@
             this.showSuccessMessagesCheckbox = new System.Windows.Forms.CheckBox();
             this.compileOnSaveCheckBox = new System.Windows.Forms.CheckBox();
             this.defaultMinifyCheckBox = new System.Windows.Forms.CheckBox();
-            this.checkForLessUpdatesCheckbox = new System.Windows.Forms.CheckBox();
+            this.useGloballyInstalledLessCheckbox = new System.Windows.Forms.CheckBox();
             this.generalGroupBox.SuspendLayout();
             this.compilingGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +65,7 @@
             // 
             // generalGroupBox
             // 
-            this.generalGroupBox.Controls.Add(this.checkForLessUpdatesCheckbox);
+            this.generalGroupBox.Controls.Add(this.useGloballyInstalledLessCheckbox);
             this.generalGroupBox.Controls.Add(this.startMinimizedCheckBox);
             this.generalGroupBox.Controls.Add(this.startWithWindowsCheckBox);
             this.generalGroupBox.Location = new System.Drawing.Point(13, 13);
@@ -137,15 +137,15 @@
             this.defaultMinifyCheckBox.Text = "Minify by default";
             this.defaultMinifyCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkForLessUpdatesCheckbox
+            // useGloballyInstalledLessCheckbox
             // 
-            this.checkForLessUpdatesCheckbox.AutoSize = true;
-            this.checkForLessUpdatesCheckbox.Location = new System.Drawing.Point(7, 67);
-            this.checkForLessUpdatesCheckbox.Name = "checkForLessUpdatesCheckbox";
-            this.checkForLessUpdatesCheckbox.Size = new System.Drawing.Size(208, 17);
-            this.checkForLessUpdatesCheckbox.TabIndex = 2;
-            this.checkForLessUpdatesCheckbox.Text = "Automatically check for less.js updates";
-            this.checkForLessUpdatesCheckbox.UseVisualStyleBackColor = true;
+            this.useGloballyInstalledLessCheckbox.AutoSize = true;
+            this.useGloballyInstalledLessCheckbox.Location = new System.Drawing.Point(7, 67);
+            this.useGloballyInstalledLessCheckbox.Name = "useGloballyInstalledLessCheckbox";
+            this.useGloballyInstalledLessCheckbox.Size = new System.Drawing.Size(145, 17);
+            this.useGloballyInstalledLessCheckbox.TabIndex = 2;
+            this.useGloballyInstalledLessCheckbox.Text = "Use globally installed less";
+            this.useGloballyInstalledLessCheckbox.UseVisualStyleBackColor = true;
             // 
             // settingsForm
             // 
@@ -178,6 +178,6 @@
         private System.Windows.Forms.CheckBox defaultMinifyCheckBox;
         private System.Windows.Forms.CheckBox compileOnSaveCheckBox;
         private System.Windows.Forms.CheckBox showSuccessMessagesCheckbox;
-        private System.Windows.Forms.CheckBox checkForLessUpdatesCheckbox;
+        private System.Windows.Forms.CheckBox useGloballyInstalledLessCheckbox;
     }
 }

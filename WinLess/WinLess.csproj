@@ -92,6 +92,9 @@
     <Compile Include="Helpers\AutoStartUtil.cs" />
     <Compile Include="SingleInstanceController.cs" />
     <Content Include="node_modules\**\*.*" />
+    <None Include="lessc.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

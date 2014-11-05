@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(aboutForm));
             this.versionGroupBox = new System.Windows.Forms.GroupBox();
-            this.checkingForUpdatesLabel = new System.Windows.Forms.Label();
             this.lessjsVersionLabel = new System.Windows.Forms.Label();
             this.lessjsLabel = new System.Windows.Forms.Label();
             this.winlessVersionLabel = new System.Windows.Forms.Label();
@@ -40,15 +39,12 @@
             this.authorNameLabel = new System.Windows.Forms.Label();
             this.graphicalDesignLabel = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
-            this.updatingLabel = new System.Windows.Forms.Label();
             this.versionGroupBox.SuspendLayout();
             this.creditsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // versionGroupBox
             // 
-            this.versionGroupBox.Controls.Add(this.updatingLabel);
-            this.versionGroupBox.Controls.Add(this.checkingForUpdatesLabel);
             this.versionGroupBox.Controls.Add(this.lessjsVersionLabel);
             this.versionGroupBox.Controls.Add(this.lessjsLabel);
             this.versionGroupBox.Controls.Add(this.winlessVersionLabel);
@@ -59,15 +55,6 @@
             this.versionGroupBox.TabIndex = 1;
             this.versionGroupBox.TabStop = false;
             this.versionGroupBox.Text = "Version info";
-            // 
-            // checkingForUpdatesLabel
-            // 
-            this.checkingForUpdatesLabel.AutoSize = true;
-            this.checkingForUpdatesLabel.Location = new System.Drawing.Point(165, 37);
-            this.checkingForUpdatesLabel.Name = "checkingForUpdatesLabel";
-            this.checkingForUpdatesLabel.Size = new System.Drawing.Size(117, 13);
-            this.checkingForUpdatesLabel.TabIndex = 4;
-            this.checkingForUpdatesLabel.Text = "Checking for updates...";
             // 
             // lessjsVersionLabel
             // 
@@ -154,16 +141,6 @@
             this.authorLabel.TabIndex = 0;
             this.authorLabel.Text = "Author:";
             // 
-            // updatingLabel
-            // 
-            this.updatingLabel.AutoSize = true;
-            this.updatingLabel.Location = new System.Drawing.Point(165, 37);
-            this.updatingLabel.Name = "updatingLabel";
-            this.updatingLabel.Size = new System.Drawing.Size(59, 13);
-            this.updatingLabel.TabIndex = 5;
-            this.updatingLabel.Text = "Updating...";
-            this.updatingLabel.Visible = false;
-            // 
             // aboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,7 +151,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "aboutForm";
             this.Text = "About";
-            this.Shown += new System.EventHandler(this.aboutForm_Shown);
             this.versionGroupBox.ResumeLayout(false);
             this.versionGroupBox.PerformLayout();
             this.creditsGroupBox.ResumeLayout(false);
@@ -195,8 +171,6 @@
         private System.Windows.Forms.Label authorLabel;
         private System.Windows.Forms.Label graphicalDesignNameLabel;
         private System.Windows.Forms.Label authorNameLabel;
-        private System.Windows.Forms.Label checkingForUpdatesLabel;
-        private System.Windows.Forms.Label updatingLabel;
 
     }
 }

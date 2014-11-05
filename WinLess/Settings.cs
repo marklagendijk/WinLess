@@ -19,7 +19,7 @@ namespace WinLess
             ShowSuccessMessages = false;
             StartWithWindows = true;
             StartMinified = false;
-            CheckForLessUpdates = true;
+            UseGloballyInstalledLess = false;
         }
 
         public DirectoryList DirectoryList { get; set; }
@@ -27,7 +27,7 @@ namespace WinLess
         public bool CompileOnSave { get; set; }
         public bool ShowSuccessMessages { get; set; }
         public bool StartMinified { get; set; }
-        public bool CheckForLessUpdates { get; set; }
+        public bool UseGloballyInstalledLess { get; set; }
 
         private bool startWithWindows;
         public bool StartWithWindows
