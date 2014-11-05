@@ -10,8 +10,6 @@ WinLess 1.x is now in maintenance mode. This means that at this time no feature 
 
 WinLess 2.x is a rewrite of WinLess using node-webkit. The development of [WinLess 2.0](https://github.com/marklagendijk/WinLess/tree/winless2) can be followed [here](https://github.com/marklagendijk/WinLess/issues/116). Most of the work is done, however, since my priorities have shifted it is now not clear whether it will ever be finished. Feature requests will only be accepted after the 2.0 release.
 
-Follow [this issue](https://github.com/marklagendijk/WinLess/issues/116) for more information.
-
 ## Using a globally installed less
 To use a globally installed LESS, instead of the one bundled with WinLess, you should follow the following steps:
 
