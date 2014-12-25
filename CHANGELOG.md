@@ -1,4 +1,7 @@
 ## Changelog
+### 1.9.1
+- Updated less.js to 2.1.2
+
 ### 1.9.0
 - Updated less.js to 1.7.5.
 - Fixed #138 with help of @magicbruno.
