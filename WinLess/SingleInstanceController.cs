@@ -11,7 +11,7 @@ namespace WinLess
     {
         public SingleInstanceController()
         {
-            this.IsSingleInstance = true;  
+            this.IsSingleInstance = true;
             this.StartupNextInstance += this_StartupNextInstance;
         }
 
@@ -24,6 +24,7 @@ namespace WinLess
             if (!commandLineArguments.ConsoleExit)
             {
                 mainForm form = (mainForm)this.MainForm;
+
                 if (commandLineArguments.HasArguments)
                 {
                     form.LoadDirectories(commandLineArguments);
@@ -39,5 +40,8 @@ namespace WinLess
         {
             this.MainForm = new mainForm();
         }
+
     }
+
+
 }
